@@ -77,7 +77,6 @@ export const useProducts = create((set, get) => ({
         axios.get("http://opsurt.test/api/products")
             .then((res) => {
                 set({ products: res.data })
-                console.log(res.data)
             })
 
             .catch((error) => console.error("Error fetching products:", error));

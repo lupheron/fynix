@@ -202,7 +202,7 @@
     font-family: Arial, sans-serif;
 }
 
-.crat_container{
+.crat_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -220,11 +220,11 @@
     width: 200px;
 }
 
-.dropdown:focus{
+.dropdown:focus {
     outline: none;
 }
 
-.create_btn{
+.create_btn {
     float: right;
 }
 
@@ -346,4 +346,9 @@
 .editForm .closeButton:hover {
     background-color: darkred;
     transform: translateY(-2px);
+}
+
+.css.editable_inp:focus {
+    border: none;
+    background-color: red;
 }
