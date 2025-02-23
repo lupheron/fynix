@@ -347,8 +347,3 @@
     background-color: darkred;
     transform: translateY(-2px);
 }
-
-.css.editable_inp:focus {
-    border: none;
-    background-color: red;
-}
