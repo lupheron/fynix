@@ -5,6 +5,7 @@ import {
     DatabaseOutlined,
     DeploymentUnitOutlined,
     DollarOutlined,
+    HddOutlined,
     PartitionOutlined,
     PieChartOutlined,
     ProductOutlined,
@@ -27,6 +28,7 @@ import Prixod from '../../Pages/Prixod/Prixod';
 import Country from '../../Pages/Country/Country';
 import Category from '../../Pages/Category/Category';
 import Material from '../../Pages/Material/Material';
+import PrixodFlow from '../../Pages/Prixod/PrixodFlow/PrixodFlow';
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -37,14 +39,16 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
-    getItem('Jurnal', '1', <PieChartOutlined />),
-    getItem(<NavLink to={"/admin/cash"}>Kassa</NavLink>, '/admin/cash', <DollarOutlined />),
+    getItem('Chiqim', 'sub1', <PieChartOutlined />, [
+        getItem(<NavLink to={"/admin/cash"}>Kassa</NavLink>, '/admin/cash', <DollarOutlined />),
+        getItem(<NavLink to={'/admin/cash-flow'}>Chiqim bo'yicha hisobotlar</NavLink>, '/admin/cash-flow', <HddOutlined />),
+    ]),
     getItem(<NavLink to="/admin/users">Foydalanuvchilar</NavLink>, '/admin/users', <UserOutlined />),
-    getItem('Filiallar', 'sub1', <TeamOutlined />, [
+    getItem('Filiallar', 'sub2', <TeamOutlined />, [
         getItem('Team 1', '5'),
         getItem('Team 2', '6')
     ]),
-    getItem('Parametrlar', 'sub2', <DeploymentUnitOutlined />, [
+    getItem('Parametrlar', 'sub3', <DeploymentUnitOutlined />, [
         getItem(<NavLink to={'/admin/country'}>Davlatlar</NavLink>, '/admin/country', <BankOutlined />),
         getItem(<NavLink to={'/admin/category'}>Kategoriyalar</NavLink>, '/admin/category', <DatabaseOutlined />),
         getItem(<NavLink to={'/admin/material'}>Materiallar</NavLink>, '/admin/material', <PartitionOutlined />),
@@ -53,7 +57,10 @@ const items = [
         getItem(<NavLink to={'/admin/boxes'}>Qutilar</NavLink>, '/admin/boxes', <BoxPlotOutlined />),
         getItem(<NavLink to={'/admin/products'}>Mahsulotlar</NavLink>, '/admin/products', <ProductOutlined />),
     ]),
-    getItem(<NavLink to={"/admin/coming"}>Kirim</NavLink>, '/admin/coming', <ShoppingCartOutlined />),
+    getItem('Kirim', 'sub4', <PieChartOutlined />, [
+        getItem(<NavLink to={"/admin/coming"}>Kirim</NavLink>, '/admin/coming', <ShoppingCartOutlined />),
+        getItem(<NavLink to={'/admin/coming-flow'}>Kirim bo'yicha hisobotlar</NavLink>, '/admin/coming-flow', <HddOutlined />),
+    ]),
 ];
 const Admin = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -119,7 +126,11 @@ const Admin = () => {
                             <Route path="/section" element={<Section />} />
                             <Route path="/boxes" element={<Boxes />} />
                             <Route path="/products" element={<Products />} />
+                            {/* OUT */}
+
+                            {/* COMING */}
                             <Route path="/coming" element={<Prixod />} />
+                            <Route path="/coming-flow" element={<PrixodFlow />} />
                         </Routes>
                     </div>
                 </Content>

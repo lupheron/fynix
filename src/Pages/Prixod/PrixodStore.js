@@ -1,4 +1,4 @@
-import { message } from "antd";
+import { Button, message, Space } from "antd";
 import axios from "axios";
 import { create } from "zustand";
 
@@ -7,6 +7,7 @@ export const useComing = create((set, get) => ({
     ed: {},
     sitems: [],
     selected: [],
+    dataSource: [],
     setSelected: (s) => {
 
         let sfind = get().selected.find((item) => item.id === s.id)
@@ -21,6 +22,7 @@ export const useComing = create((set, get) => ({
             s = {
                 id: s.id,
                 pr_id: s.id,
+                name: s.name,
                 count: 1,
                 price: s.price,
                 summa: s.price * s.count
@@ -38,8 +40,8 @@ export const useComing = create((set, get) => ({
     scolumns: [
         {
             title: 'Maxsulot nomi',
-            dataIndex: 'pr_name',
-            key: 'pr_name',
+            dataIndex: 'name',
+            key: 'name',
         },
         {
             title: 'Soni',
@@ -60,15 +62,60 @@ export const useComing = create((set, get) => ({
 
 
     ],
+
+    expandColumns: [
+        {
+            title: 'Keltirilgan kuni',
+            dataIndex: 'date',
+            key: 'date',
+        },
+        {
+            title: 'Yetkazuvchi',
+            dataIndex: 'supplier',
+            key: 'supplier',
+        },
+        {
+            title: 'Uskunalar',
+            key: 'actions',
+            render: () => (
+                <Space size="middle">
+                    <Button onClick={() => get().handleEdit()}>✏️</Button>
+                    <Button danger onClick={() => get().handleDelete()}>🗑️</Button>
+                </Space>
+            ),
+        },
+    ],
+
+    columns: [
+        {
+            title: 'Mahsulot',
+            dataIndex: 'product',
+            key: 'product',
+        },
+        {
+            title: 'Action',
+            key: 'operation',
+            render: () => <a>Publish</a>,
+        },
+    ],
+
     create: (data) => {
         axios.post('/createcoming', data).then(res => {
-            message.success("Muvaffaqiyatli qo'shildi!")
-            set({ selected: [] })
-        })
+            message.success("Muvaffaqiyatli qo'shildi!");
+
+            // Add the new order to `coming` state
+            set((state) => ({
+                coming: [...state.coming, res.data],
+                selected: []
+            }));
+        }).catch(err => {
+            message.error("Xatolik yuz berdi: " + err.message);
+        });
     },
+    
     getComing: () => {
-        axios.get('/createcoming').then(res => {
+        axios.get('/coming').then(res => {
             set({ coming: res.data })
         })
-    }
+    },
 }))

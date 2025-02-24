@@ -7,7 +7,7 @@ function Head() {
 
     const navigator = useNavigate()
     return (
-        <div className={css.header}>
+        <div className={css.head}>
             <div className={css.logo_container}>
                 <img src={logo} alt="" />
                 <h1>FYNIX</h1>

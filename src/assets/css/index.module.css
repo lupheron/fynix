@@ -8,7 +8,7 @@
 
 /* HEADER */
 
-.header {
+.head {
     background-color: transparent;
     padding: 20px;
     display: flex;
@@ -47,6 +47,7 @@
     cursor: pointer;
     font-size: 18px;
     font-weight: 550;
+    color: white;
 }
 
 .register_btn {
@@ -153,6 +154,7 @@
     background: linear-gradient(180deg, black, rgb(35, 35, 110));
     width: 100%;
     height: 100vh;
+    color: white;
 }
 
 .landing_container {

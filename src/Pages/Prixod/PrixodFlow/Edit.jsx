@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EditPrixod() {
+function Edit() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function EditPrixod() {
     );
 }
 
-export default EditPrixod;
+export default Edit;
