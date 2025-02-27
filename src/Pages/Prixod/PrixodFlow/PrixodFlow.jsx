@@ -4,11 +4,11 @@ import { useComing } from '../PrixodStore';
 
 function PrixodFlow() {
     // let { coming, getData, expandColumns, } = usePrixodFlow()
-    let { dataSource, columns, expandColumns, selected, setSelected, create, coming, getComing } = useComing()
-    const expandedRowRender = () => (
+    let { columns, expandColumns, coming, getComing } = useComing()
+    const expandedRowRender = (items) => (
         <Table
             columns={expandColumns}
-            dataSource={coming}
+            dataSource={items}
             pagination={false}
             rowKey={'id'}
         />
@@ -22,7 +22,8 @@ function PrixodFlow() {
             <Table
                 columns={columns}
                 expandable={{
-                    expandedRowRender,
+
+                    expandedRowRender: (rec) => expandedRowRender(rec.items),
                     defaultExpandedRowKeys: ['0'],
                 }}
                 dataSource={coming} // Changed from dataSource to coming

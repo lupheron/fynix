@@ -8,12 +8,10 @@ export const useComing = create((set, get) => ({
     sitems: [],
     selected: [],
     dataSource: [],
+    in_items: [],
     setSelected: (s) => {
-
         let sfind = get().selected.find((item) => item.id === s.id)
         if (sfind?.id) {
-            console.log('sfind', sfind);
-
             let other = get().selected.filter((item) => item.id !== s.id)
             sfind.count = ++sfind.count
             sfind.summa = sfind.count * sfind.price
@@ -25,11 +23,12 @@ export const useComing = create((set, get) => ({
                 name: s.name,
                 count: 1,
                 price: s.price,
-                summa: s.price * s.count
+                summa: s.price * s.count  // Problem here
             }
             set({ selected: [...get().selected, s] })
         }
     },
+    
     searchItem: (param) => {
         if (param.length >= 3) {
             axios.get(`/product/${param}`).then(res => {
@@ -65,14 +64,24 @@ export const useComing = create((set, get) => ({
 
     expandColumns: [
         {
-            title: 'Keltirilgan kuni',
-            dataIndex: 'date',
-            key: 'date',
+            title: 'Maxsulot',
+            dataIndex: 'product',
+            key: 'product',
         },
         {
-            title: 'Yetkazuvchi',
-            dataIndex: 'supplier',
-            key: 'supplier',
+            title: 'Soni',
+            dataIndex: 'count',
+            key: 'count',
+        },
+        {
+            title: 'Narx',
+            dataIndex: 'price',
+            key: 'price',
+        },
+        {
+            title: 'Jami',
+            dataIndex: 'summa',
+            key: 'summa',
         },
         {
             title: 'Uskunalar',
@@ -85,12 +94,26 @@ export const useComing = create((set, get) => ({
             ),
         },
     ],
-
     columns: [
         {
-            title: 'Mahsulot',
-            dataIndex: 'product',
-            key: 'product',
+            title: 'TR',
+            dataIndex: 'id',
+            key: 'id',
+        },
+        {
+            title: 'Qabul qilingan sana',
+            dataIndex: 'date',
+            key: 'date',
+        },
+        {
+            title: 'Yetkazib beruvchi',
+            dataIndex: 'supplier',
+            key: 'supplier',
+        },
+        {
+            title: 'Jami qiymati',
+            dataIndex: 'summa',
+            key: 'summa',
         },
         {
             title: 'Action',
@@ -112,10 +135,11 @@ export const useComing = create((set, get) => ({
             message.error("Xatolik yuz berdi: " + err.message);
         });
     },
-    
+
     getComing: () => {
         axios.get('/coming').then(res => {
             set({ coming: res.data })
+
         })
     },
 }))
