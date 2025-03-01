@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import { useComing } from '../PrixodStore';
+import Edit from './Edit';
 
 function PrixodFlow() {
     // let { coming, getData, expandColumns, } = usePrixodFlow()
-    let { columns, expandColumns, coming, getComing } = useComing()
+    let { columns, expandColumns, coming, getComing, isEditing, handleClose, selectedProduct, handleUpdate } = useComing()
     const expandedRowRender = (items) => (
         <Table
             columns={expandColumns}
@@ -18,19 +19,25 @@ function PrixodFlow() {
         getComing()
     }, [])
     return (
-        <>
-            <Table
-                columns={columns}
-                expandable={{
+    <>
+        <Table
+            columns={columns}
+            expandable={{
+                expandedRowRender: (rec) => expandedRowRender(rec.items),
+                rowExpandable: (rec) => rec.items.length > 0,
+            }}
+            dataSource={coming.filter(rec => rec.items.length > 0)} // Filter out empty incomings
+            rowKey={'id'}
+        />
 
-                    expandedRowRender: (rec) => expandedRowRender(rec.items),
-                    defaultExpandedRowKeys: ['0'],
-                }}
-                dataSource={coming} // Changed from dataSource to coming
-                rowKey={'id'} // Ensure unique row key
-            />
-
-        </>
+        <Edit
+            title="Mahsulotni taxrirlash"
+            isEditing={isEditing}
+            handleClose={handleClose}
+            selectedItem={selectedProduct}
+            handleUpdate={handleUpdate}
+        />
+    </>
     );
 }
 
