@@ -8,6 +8,54 @@ export const useComing = create((set, get) => ({
     selected: [],
     isEditing: false,
     selectedProduct: null,
+
+    setSelected: (s) => {
+        let sfind = get().selected.find((item) => item.id === s.id)
+        if (sfind?.id) {
+            let other = get().selected.filter((item) => item.id !== s.id)
+            sfind.count = ++sfind.count
+            sfind.summa = sfind.count * sfind.price
+            set({ selected: [...other, sfind] })
+        } else {
+            s = {
+                id: s.id,
+                pr_id: s.id,
+                name: s.name,
+                count: 1,
+                price: s.price,
+                summa: s.price * s.count
+            }
+            set({ selected: [...get().selected, s] })
+        }
+    },
+
+    searchItem: (param) => {
+        if (param.length >= 3) {
+            axios.get(`/product/${param}`).then(res => {
+                set({ sitems: res.data })
+            })
+        }
+    },
+
+    getComing: () => {
+        axios.get('/coming').then(res => {
+            console.log("Fetched Data:", res.data);
+            set({ coming: res.data });
+        });
+    },
+
+    create: (data) => {
+        axios.post('/createcoming', data).then(res => {
+            message.success("Muvaffaqiyatli qo'shildi!");
+            set((state) => ({
+                coming: [...state.coming, res.data],
+                selected: []
+            }));
+        }).catch(err => {
+            message.error("Xatolik yuz berdi: " + err.message);
+        });
+    },
+
     scolumns: [
         {
             title: 'Maxsulot nomi',
@@ -31,6 +79,9 @@ export const useComing = create((set, get) => ({
             render: (_, rec) => rec.count * rec.price
         },
     ],
+
+
+    // PRIXODFLOW
 
     expandColumns: [
         {
@@ -57,7 +108,7 @@ export const useComing = create((set, get) => ({
             title: 'Holati',
             dataIndex: 'status',
             key: 'status',
-            render: (_, status) => {
+            render: (status) => {
                 if (status === 1) {
                     return "Mavjud"
                 } else {
@@ -68,12 +119,14 @@ export const useComing = create((set, get) => ({
         {
             title: 'Uskunalar',
             key: 'actions',
-            render: (_, coming) => (
-                <Space>
-                    <Button onClick={() => get().handleEdit(coming)}>✏️</Button>
-                    <Button danger onClick={() => get().handleDelete(coming.id)}>🗑️</Button>
-                </Space>
-            )
+            render: (_, coming) => {
+                return (
+                    <Space>
+                        <Button onClick={() => get().handleEdit(coming)}>✏️</Button>
+                        <Button danger onClick={() => get().handleDelete(coming.id)}>🗑️</Button>
+                    </Space>
+                )
+            }
         },
     ],
 
@@ -97,62 +150,9 @@ export const useComing = create((set, get) => ({
             title: 'Jami qiymati',
             dataIndex: 'summa',
             key: 'summa',
-        },
-        {
-            title: 'Action',
-            key: 'operation',
-            render: () => <a>Publish</a>,
-        },
+        }
     ],
 
-    setSelected: (s) => {
-        let sfind = get().selected.find((item) => item.id === s.id)
-        if (sfind?.id) {
-            let other = get().selected.filter((item) => item.id !== s.id)
-            sfind.count = ++sfind.count
-            sfind.summa = sfind.count * sfind.price
-            set({ selected: [...other, sfind] })
-        } else {
-            s = {
-                id: s.id,
-                pr_id: s.id,
-                name: s.name,
-                count: 1,
-                price: s.price,
-                summa: s.price * s.count  // Problem here
-            }
-            set({ selected: [...get().selected, s] })
-        }
-    },
-
-    searchItem: (param) => {
-        if (param.length >= 3) {
-            axios.get(`/product/${param}`).then(res => {
-                set({ sitems: res.data })
-            })
-        }
-    },
-
-    getComing: () => {
-        axios.get('/coming').then(res => {
-            console.log("Fetched Data:", res.data); // Debugging line
-            set({ coming: res.data });
-        });
-    },
-
-    create: (data) => {
-        axios.post('/createcoming', data).then(res => {
-            message.success("Muvaffaqiyatli qo'shildi!");
-
-            // Add the new order to `coming` state
-            set((state) => ({
-                coming: [...state.coming, res.data],
-                selected: []
-            }));
-        }).catch(err => {
-            message.error("Xatolik yuz berdi: " + err.message);
-        });
-    },
 
     handleEdit: (coming) => {
         console.log("Editing coming:", coming); // Debugging: Log the coming being edited

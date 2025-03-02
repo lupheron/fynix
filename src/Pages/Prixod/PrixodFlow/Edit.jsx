@@ -17,11 +17,11 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
 
         const price = parseFloat(allValues.price) || 0;
         const count = parseFloat(allValues.count) || 0;
-        const summa = price * count;
+        const in_summa = price * count;
 
-        console.log("Calculated Summa:", summa);
+        console.log("Calculated Summa:", in_summa);
 
-        form.setFieldsValue({ summa });
+        form.setFieldsValue({ in_summa });
     };
 
     return (
@@ -36,7 +36,10 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
                 onValuesChange={handleValuesChange}
             >
                 <Row gutter={16}>
-                    <Form.Item hidden name="id">
+                    <Form.Item hidden name="id"> 
+                        <Input />
+                    </Form.Item>
+                    <Form.Item hidden name="in_id"> 
                         <Input />
                     </Form.Item>
                     <Col span={8}>
@@ -50,7 +53,7 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="summa" label="Summasi" rules={[{ required: true, message: "Mahsulot summasini kiriting!" }]}>
+                        <Form.Item name="in_summa" label="Summasi" rules={[{ required: true, message: "Mahsulot summasini kiriting!" }]}>
                             <Input type="number" disabled />
                         </Form.Item>
                     </Col>
