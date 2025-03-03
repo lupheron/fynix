@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal, Row, Col } from 'antd';
+import { Button, Form, Input, Modal, Row, Col, Select } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import React, { useEffect } from 'react';
 
@@ -36,10 +36,10 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
                 onValuesChange={handleValuesChange}
             >
                 <Row gutter={16}>
-                    <Form.Item hidden name="id"> 
+                    <Form.Item hidden name="id">
                         <Input />
                     </Form.Item>
-                    <Form.Item hidden name="in_id"> 
+                    <Form.Item hidden name="in_id">
                         <Input />
                     </Form.Item>
                     <Col span={8}>
@@ -49,12 +49,26 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
                     </Col>
                     <Col span={8}>
                         <Form.Item name="price" label="Narxi" rules={[{ required: true, message: "Mahsulot narxini kiriting!" }]}>
-                            <Input type="number" />
+                            <Input type="number" disabled />
                         </Form.Item>
                     </Col>
                     <Col span={8}>
                         <Form.Item name="in_summa" label="Summasi" rules={[{ required: true, message: "Mahsulot summasini kiriting!" }]}>
                             <Input type="number" disabled />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col span={8}>
+                        <Form.Item name="status" label="Holati" rules={[{ required: true, message: "Kirim holatini kiriting!" }]}>
+                            <Select
+                                showSearch
+                                placeholder="Holatni tanlang"
+                                options={[
+                                    { value: 1, label: "Mavjud" },
+                                    { value: 0, label: "O'chirilgan" }
+                                ]}
+                            />
                         </Form.Item>
                     </Col>
                 </Row>

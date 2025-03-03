@@ -160,7 +160,12 @@ export const useComing = create((set, get) => ({
     },
 
     handleUpdate: (values) => {
-        axios.put(`http://opsurt.test/api/updatecoming/${values.id}`, values)
+        const updatedValues = {
+            ...values,
+            status: values.status === 1 ? 1 : 0 // Enforcing status as 1 or 0
+        };
+
+        axios.put(`http://opsurt.test/api/updatecoming/${values.id}`, updatedValues)
             .then((response) => {
                 console.log("Response from API:", response.data);
                 set({ isEditing: false, selectedProduct: null });
