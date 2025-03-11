@@ -1,27 +1,27 @@
-import { Button, Form, Input, Modal, Row, Col, Select } from 'antd';
-import { useForm } from 'antd/es/form/Form';
-import React, { useEffect } from 'react';
+import { Button, Form, Input, Modal, Row, Col, Select } from "antd";
+import { useForm } from "antd/es/form/Form";
+import React, { useEffect } from "react";
 
 function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
     const [form] = useForm();
 
     useEffect(() => {
         if (selectedItem) {
-            form.setFieldsValue(selectedItem);
+            const price = parseFloat(selectedItem.price) || 0;
+            const count = parseFloat(selectedItem.count) || 0;
+            const summa = price * count;
+
+            form.setFieldsValue({ ...selectedItem, summa: summa || 0 });
         }
     }, [selectedItem]);
 
-    const handleValuesChange = (changedValues, allValues) => {
-        console.log("Changed Values:", changedValues);
-        console.log("All Values:", allValues);
 
+    const handleValuesChange = (_, allValues) => {
         const price = parseFloat(allValues.price) || 0;
         const count = parseFloat(allValues.count) || 0;
-        const in_summa = price * count;
+        const summa = price * count;
 
-        console.log("Calculated Summa:", in_summa);
-
-        form.setFieldsValue({ in_summa });
+        form.setFieldsValue({ summa });
     };
 
     return (
@@ -53,7 +53,7 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="in_summa" label="Summasi" rules={[{ required: true, message: "Mahsulot summasini kiriting!" }]}>
+                        <Form.Item name="summa" label="Summasi">
                             <Input type="number" disabled />
                         </Form.Item>
                     </Col>
