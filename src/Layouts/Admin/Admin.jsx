@@ -23,12 +23,12 @@ import Users from '../../Pages/Users/Users';
 import Warehouse from '../../Pages/WareHouse/Warehouse';
 import Section from '../../Pages/Section/Section';
 import Boxes from '../../Pages/Boxes/Boxes';
-import Cash from '../../Pages/Cash/Cash';
 import Prixod from '../../Pages/Prixod/Prixod';
 import Country from '../../Pages/Country/Country';
 import Category from '../../Pages/Category/Category';
 import Material from '../../Pages/Material/Material';
 import PrixodFlow from '../../Pages/Prixod/PrixodFlow/PrixodFlow';
+import Out from '../../Pages/Out/Out';
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -40,7 +40,7 @@ function getItem(label, key, icon, children) {
 }
 const items = [
     getItem('Chiqim', 'sub1', <PieChartOutlined />, [
-        getItem(<NavLink to={"/admin/cash"}>Kassa</NavLink>, '/admin/cash', <DollarOutlined />),
+        getItem(<NavLink to={"/admin/out"}>Kassa</NavLink>, '/admin/out', <DollarOutlined />),
         getItem(<NavLink to={'/admin/cash-flow'}>Chiqim bo'yicha hisobotlar</NavLink>, '/admin/cash-flow', <HddOutlined />),
     ]),
     getItem(<NavLink to="/admin/users">Foydalanuvchilar</NavLink>, '/admin/users', <UserOutlined />),
@@ -117,7 +117,7 @@ const Admin = () => {
                         }}
                     >
                         <Routes>
-                            <Route path="/cash" element={<Cash />} />
+                            <Route path="/out" element={<Out />} />
                             <Route path="/users" element={<Users />} />
                             <Route path="/country" element={<Country />} />
                             <Route path="/category" element={<Category />} />
