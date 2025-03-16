@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Table } from 'antd';
-import { useComing } from '../PrixodStore';
+import { useOut } from '../OutStore';
 import Edit from './Edit';
 
-function PrixodFlow() {
-    let { columns, expandColumns, coming, getComing, isEditing, handleClose, selectedProduct, handleUpdate, isDeleting, deleteAll } = useComing()
+function OutFlow() {
+    let { columns, expandColumns, out, getOut, isEditing, handleClose, selectedProduct, handleUpdate } = useOut()
     const expandedRowRender = (items) => (
         <Table
             columns={expandColumns}
@@ -15,7 +15,7 @@ function PrixodFlow() {
     );
 
     useEffect(() => {
-        getComing()
+        getOut()
     }, [])
     return (
         <>
@@ -25,7 +25,7 @@ function PrixodFlow() {
                     expandedRowRender: (rec) => expandedRowRender(rec.items),
                     rowExpandable: (rec) => rec.items.length > 0,
                 }}
-                dataSource={coming.filter(rec => rec.items.length > 0)} // Filter out empty incomings
+                dataSource={out.filter(rec => rec.items.length > 0)} // Filter out empty inouts
                 rowKey={'id'}
             />
 
@@ -40,4 +40,4 @@ function PrixodFlow() {
     );
 }
 
-export default PrixodFlow;
+export default OutFlow;
