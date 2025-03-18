@@ -1,150 +1,96 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Result, Button } from 'antd';
-import css from '../../assets/css/index.module.css';
+import React, { useEffect } from 'react';
+import { Result, Button, Form, Row, Col, Input, Select } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import css from '../../assets/css/index.module.css';
+import { useAuth } from './AuthStore';
+import { useForm } from 'antd/es/form/Form';
 
 function Register() {
-    const [formData, setFormData] = useState({
-        name: '', // Match backend's expected field name
-        phone: '',
-        email: '',
-        role: '',
-        password: '',
-    });
-
-    const navigate = useNavigate()
-    const [submit, setSubmit] = useState(false);
-    const [status, setStatus] = useState(''); // Track status: 'success' or 'error'
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSubmit(true); // Trigger the useEffect to post data
-    };
+    const { handleRegister, status, getUsers } = useAuth();
+    const navigate = useNavigate();
+    const [form] = useForm();
 
     useEffect(() => {
-        if (submit) {
-            axios
-                .post('http://opsurt.test/api/register', formData)
-                .then((response) => {
-                    console.log('Response:', response.data);
-                    setStatus('success'); // Set status to success
-                })
-                .catch((error) => {
-                    console.error('Error:', error.response ? error.response.data : error.message);
-                    setStatus('error'); // Set status to error
-                })
-                .finally(() => {
-                    setSubmit(false); // Reset submit state
-                });
-        }
-    }, [submit, formData]);
+        getUsers();
+    }, []);
 
-    const renderResult = () => {
-        if (status === 'success') {
-            return (
+    return (
+        <div className={css.users}>
+            {status === 'success' ? (
                 <Result
                     status="success"
                     title="Foydalanuvchi muvaffaqiyatli ro'yxatdan o'tdi!"
                     subTitle="Sizning ma'lumotlaringiz muvaffaqiyatli saqlandi."
                     extra={[
-                        <Button type="primary" key="console" onClick={navigate('/login')}>
+                        <Button type="primary" key="login" onClick={() => navigate('/login')}>
                             Log in
                         </Button>,
                     ]}
                 />
-            );
-        }
-
-        if (status === 'error') {
-            return (
+            ) : status === 'error' ? (
                 <Result
                     status="warning"
                     title="Ro'yxatdan o'tishda xatolik yuzaga keldi."
                     extra={[
-                        <Button type="primary" key="console" onClick={() => window.location.reload()}>
-                            Qayta urisnish
+                        <Button type="primary" key="retry" onClick={() => window.location.reload()}>
+                            Qayta urinish
                         </Button>,
                     ]}
                 />
-            );
-        }
-
-        return null; // Return nothing if no status
-    };
-
-    return (
-        <div className={css.users}>
-            {status ? (
-                renderResult() // Show success/error message if status is set
             ) : (
-                <form onSubmit={handleSubmit} className={css.formContainer}>
-                    <h2 className={css.formTitle}>Ro'yxatdan O'tish</h2>
-                    <div className={css.inputGroup}>
-                        <label htmlFor="text">Ism, Familiya va Sharifingiz</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            className={css.inputField}
-                        />
-                    </div>
-                    <div className={css.inputGroup}>
-                        <label htmlFor="number">Telefon Raqamingiz</label>
-                        <input
-                            type="number"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            className={css.inputField}
-                        />
-                    </div>
-                    <div className={css.inputGroup}>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            className={css.inputField}
-                        />
-                    </div>
-                    <div className={css.inputGroup}>
-                        <label htmlFor="text">Rolingiz</label>
-                        <select
-                            name="role"
-                            value={formData.role}
-                            onChange={handleInputChange}
-                            className={css.selectField}
-                        >
-                            <option value="direktor">Direktor</option>
-                            <option value="manager">Manager</option>
-                            <option value="boshqaruvchi">Bo'lim Boshlig'i</option>
-                            <option value="ishchi">Ishchi</option>
-                        </select>
-                    </div>
-                    <div className={css.inputGroup}>
-                        <label htmlFor="password">Parol</label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleInputChange}
-                            className={css.inputField}
-                        />
-                    </div>
-                    <input
-                        type="submit"
-                        className={css.submitButton}
-                        value={'Yuborish'}
-                    />
-                </form>
+                <Form
+                    onFinish={(values) => {
+                        handleRegister(values);
+                        form.resetFields();
+                    }}
+                    layout="vertical"
+                    form={form}
+                    style={{ 
+                        backgroundColor: "white",
+                        padding: '20px',
+                        border: 'none',
+                        borderRadius: "10px"
+                     }}
+                >
+                        <Col style={{ width: '340px' }}>
+                            <Form.Item name="name" label="Foydalanuvchi I.F.SH" rules={[{ required: true, message: "Ismni kiriting!" }]}>
+                                <Input />
+                            </Form.Item>
+                        </Col>
+                        <Col style={{ width: '340px' }}>
+                            <Form.Item name="phone" label="Telefon Raqam" rules={[{ required: true, message: "Telefon raqamni kiriting!" }]}>
+                                <Input />
+                            </Form.Item>
+                        </Col>
+                        <Col style={{ width: '340px' }}>
+                            <Form.Item name="email" label="Email" rules={[{ required: true, message: "Emailni kiriting!" }]}>
+                                <Input />
+                            </Form.Item>
+                        </Col>
+                        <Col style={{ width: '340px' }}>
+                            <Form.Item name="role" label="Foydalanuvchi Roli" rules={[{ required: true, message: "Rolni tanlang!" }]}>
+                                <Select
+                                    showSearch
+                                    placeholder="Rolni tanlang"
+                                    optionFilterProp="label"
+                                    options={[
+                                        { value: 'direktor', label: 'Direktor' },
+                                        { value: 'manager', label: 'Manager' },
+                                        { value: 'boshqaruvchi', label: 'Boshqaruvchi' },
+                                        { value: 'ischi', label: 'Ishchi' },
+                                    ]}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col style={{ width: '340px' }}>
+                            <Form.Item name="password" label="Parol" rules={[{ required: true, message: "Parolni kiriting!" }]}>
+                                <Input.Password />
+                            </Form.Item>
+                        </Col>
+                        <Col span={24}>
+                            <Button htmlType="submit" type="primary">Saqlash</Button>
+                        </Col>
+                </Form>
             )}
         </div>
     );
