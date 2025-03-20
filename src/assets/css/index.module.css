@@ -349,3 +349,19 @@
     background-color: darkred;
     transform: translateY(-2px);
 }
+
+
+
+
+
+/* STATISTIKS */
+.out_bar_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.out_bar{
+    width: 1200px;
+    height: 600px;
+}

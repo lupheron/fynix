@@ -150,9 +150,19 @@ export const useOut = create((set, get) => ({
             key: 'id',
         },
         {
-            title: 'Qabul qilingan sana',
-            dataIndex: 'date',
-            key: 'date',
+            title: "Prixod bo'lgan kun",
+            dataIndex: 'day',
+            key: 'day',
+        },
+        {
+            title: "Prixod bo'lgan oy",
+            dataIndex: 'month',
+            key: 'month',
+        },
+        {
+            title: "Prixod bo'lgan yil",
+            dataIndex: 'year',
+            key: 'year',
         },
         {
             title: 'Jami qiymati',

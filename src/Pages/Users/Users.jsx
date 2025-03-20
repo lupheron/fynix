@@ -12,15 +12,6 @@ function Users() {
         getUsers();
     }, []);
 
-    // Define fields for the Edit and Create modals
-    const userFields = [
-        { name: 'name', label: 'Foydalanuvchi ismi', rules: [{ required: true, message: "Foydalanuvchi ismini kiriting!" }] },
-        { name: 'email', label: 'Email', rules: [{ required: true, message: "Emailni kiriting!" }, { type: 'email', message: "To'g'ri email kiriting!" }] },
-        { name: 'role', label: 'Rol', rules: [{ required: true, message: "Rolni kiriting!" }] },
-        { name: 'phone', label: 'Telefon raqami', rules: [{ required: true, message: "Telefon raqamini kiriting!" }] },
-        { name: 'password', label: 'Paroli', rules: [{ required: true, message: "Parolni kiriting!" }] },
-    ];
-
     return (
         <div>
             <div className={styles.create_btn}>
@@ -43,7 +34,6 @@ function Users() {
                 handleClose={handleClose}
                 selectedItem={selectedUser}
                 handleUpdate={handleUpdate}
-                fields={userFields}
             />
 
             {/* Reuse the generic Create modal */}
@@ -52,7 +42,6 @@ function Users() {
                 isCreating={isCreating}
                 handleClose={handleClose}
                 handleCreate={handleCreate}
-                fields={userFields}
             />
         </div>
     );

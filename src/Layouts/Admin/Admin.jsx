@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
     BankOutlined,
+    BarChartOutlined,
     BoxPlotOutlined,
     DatabaseOutlined,
     DeploymentUnitOutlined,
@@ -30,6 +31,7 @@ import Material from '../../Pages/Material/Material';
 import PrixodFlow from '../../Pages/Prixod/PrixodFlow/PrixodFlow';
 import Out from '../../Pages/Out/Out';
 import OutFlow from '../../Pages/Out/OutFlow/OutFlow';
+import Stat from '../../Pages/Chart/Stat';
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -40,6 +42,7 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
+    getItem(<NavLink to={"/admin/"}>Statistika</NavLink>, '/admin/', <BarChartOutlined />),
     getItem('Chiqim', 'sub1', <PieChartOutlined />, [
         getItem(<NavLink to={"/admin/out"}>Kassa</NavLink>, '/admin/out', <DollarOutlined />),
         getItem(<NavLink to={'/admin/out-flow'}>Chiqim bo'yicha hisobotlar</NavLink>, '/admin/out-flow', <HddOutlined />),
@@ -80,7 +83,7 @@ const Admin = () => {
     return (
         <Layout
             style={{
-                minHeight: '100vh',
+                minHeight: '150vh',
             }}
         >
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
@@ -118,6 +121,7 @@ const Admin = () => {
                         }}
                     >
                         <Routes>
+                            <Route path="/" element={<Stat />} />
                             <Route path="/out" element={<Out />} />
                             <Route path="/out-flow" element={<OutFlow />} />
                             <Route path="/users" element={<Users />} />
@@ -136,13 +140,6 @@ const Admin = () => {
                         </Routes>
                     </div>
                 </Content>
-                <Footer
-                    style={{
-                        textAlign: 'center',
-                    }}
-                >
-                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
-                </Footer>
             </Layout>
         </Layout>
     );
