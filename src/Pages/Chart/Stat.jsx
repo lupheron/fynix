@@ -3,9 +3,10 @@ import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import axios from "axios";
 import css from "../../assets/css/index.module.css";
-import { Card, Col, Divider, Row } from "antd";
+import { Card, Col, Divider, Row, Statistic } from "antd";
 import { useUsers } from "../Users/UsersStore";
 import { useProducts } from "../Products/ProductStore";
+import { BoxPlotOutlined, DollarOutlined, UserOutlined } from "@ant-design/icons";
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -109,18 +110,33 @@ function Stat() {
             <Divider />
             <Row gutter={16}>
                 <Col span={8}>
-                    <Card title="Jami Mahsulotlar" variant="borderless">
-                        {products.length}
+                    <Card>
+                        <Statistic
+                            title="Jami Mahsulotlar"
+                            value={products.length}
+                            prefix={<BoxPlotOutlined />}
+                            suffix={"dona"}
+                        />
                     </Card>
                 </Col>
                 <Col span={8}>
-                    <Card title="Jami foydalanuvchilar" variant="borderless">
-                        {users.length}
+                    <Card>
+                        <Statistic
+                            title="Jami foydalanuvchilar"
+                            value={users.length}
+                            prefix={<UserOutlined />}
+                            suffix={"dona"}
+                        />
                     </Card>
                 </Col>
                 <Col span={8}>
-                    <Card title="Joriy yildagi daromad" variant="borderless">
-                        {sum}
+                    <Card>
+                        <Statistic
+                            title="Jami yildagi tushum"
+                            value={sum}
+                            prefix={<DollarOutlined />}
+                            suffix={"sum"}
+                        />
                     </Card>
                 </Col>
             </Row>
