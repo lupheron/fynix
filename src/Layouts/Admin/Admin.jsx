@@ -32,6 +32,7 @@ import PrixodFlow from '../../Pages/Prixod/PrixodFlow/PrixodFlow';
 import Out from '../../Pages/Out/Out';
 import OutFlow from '../../Pages/Out/OutFlow/OutFlow';
 import Stat from '../../Pages/Chart/Stat';
+import Chat from '../../Pages/Chat/Chat';
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -48,10 +49,7 @@ const items = [
         getItem(<NavLink to={'/admin/out-flow'}>Chiqim bo'yicha hisobotlar</NavLink>, '/admin/out-flow', <HddOutlined />),
     ]),
     getItem(<NavLink to="/admin/users">Foydalanuvchilar</NavLink>, '/admin/users', <UserOutlined />),
-    getItem('Filiallar', 'sub2', <TeamOutlined />, [
-        getItem('Team 1', '5'),
-        getItem('Team 2', '6')
-    ]),
+    getItem(<NavLink to={"/admin/chat"}>Chat</NavLink>, "/admin/chat", <TeamOutlined />),
     getItem('Parametrlar', 'sub3', <DeploymentUnitOutlined />, [
         getItem(<NavLink to={'/admin/country'}>Davlatlar</NavLink>, '/admin/country', <BankOutlined />),
         getItem(<NavLink to={'/admin/category'}>Kategoriyalar</NavLink>, '/admin/category', <DatabaseOutlined />),
@@ -122,8 +120,6 @@ const Admin = () => {
                     >
                         <Routes>
                             <Route path="/" element={<Stat />} />
-                            <Route path="/out" element={<Out />} />
-                            <Route path="/out-flow" element={<OutFlow />} />
                             <Route path="/users" element={<Users />} />
                             <Route path="/country" element={<Country />} />
                             <Route path="/category" element={<Category />} />
@@ -132,8 +128,11 @@ const Admin = () => {
                             <Route path="/section" element={<Section />} />
                             <Route path="/boxes" element={<Boxes />} />
                             <Route path="/products" element={<Products />} />
+                            {/* CHAT */}
+                            <Route path="/chat" element={<Chat />} />
                             {/* OUT */}
-
+                            <Route path="/out" element={<Out />} />
+                            <Route path="/out-flow" element={<OutFlow />} />
                             {/* COMING */}
                             <Route path="/coming" element={<Prixod />} />
                             <Route path="/coming-flow" element={<PrixodFlow />} />

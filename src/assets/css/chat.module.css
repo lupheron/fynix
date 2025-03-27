@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.chat_container {
+    border: 1px solid brown;
+    border-radius: 10px;
+    width: 1000px;
+    margin: 50px auto;
+    display: flex;
+}
+
+.chat_aside {
+    width: 350px;
+    background-color: sienna;
+    border-radius: 10px 0 0 10px;
+    padding: 10px;
+    color: white;
+}
+
+.chat_messages_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    /* Change from 110% to 100% */
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.messages {
+    flex-grow: 1;
+}
+
+/* General message styling */
+.chat_message {
+    background-color: sienna;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 60%;
+    /* Change from fixed width to dynamic */
+    margin-top: 10px;
+    align-self: flex-start;
+    /* Align other users' messages to the left */
+}
+
+.chat_message h4 {
+    font-size: 14px;
+    color: rgb(75, 46, 46);
+}
+
+.chat_message p {
+    font-size: 17px;
+    color: wheat;
+}
+
+/* My messages (align to right, different color) */
+.chat_message_me {
+    background-color: #0084ff;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 60%;
+    /* Make it responsive */
+    margin-top: 10px;
+    align-self: flex-end;
+    /* Align my messages to the right */
+    text-align: left;
+    /* Remove right text-align */
+}
+
+.chat_message_me h4 {
+    font-size: 14px;
+    color: white;
+}
+
+.chat_message_me p {
+    font-size: 17px;
+    color: white;
+}
+
+/* Message input */
+.messages_send {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: white;
+}
