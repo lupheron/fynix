@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Result, Button, Form, Row, Col, Input, Select } from 'antd';
+import { Result, Button, Form, Col, Input, Select } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import css from '../../assets/css/index.module.css';
 import { useAuth } from './AuthStore';

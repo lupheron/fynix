@@ -25,7 +25,6 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    /* Change from 110% to 100% */
     padding: 10px;
     overflow-y: auto;
 }
@@ -34,16 +33,15 @@
     flex-grow: 1;
 }
 
-/* General message styling */
+/* Messages from other users (align to the left) */
 .chat_message {
     background-color: sienna;
-    border-radius: 5px;
+    align-self: flex-start;
+    border-radius: 10px;
     padding: 10px;
     max-width: 60%;
-    /* Change from fixed width to dynamic */
     margin-top: 10px;
-    align-self: flex-start;
-    /* Align other users' messages to the left */
+    word-wrap: break-word;
 }
 
 .chat_message h4 {
@@ -56,18 +54,18 @@
     color: wheat;
 }
 
-/* My messages (align to right, different color) */
+/* My messages (align the container to the right) */
 .chat_message_me {
     background-color: #0084ff;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     max-width: 60%;
-    /* Make it responsive */
     margin-top: 10px;
+    word-wrap: break-word;
     align-self: flex-end;
-    /* Align my messages to the right */
-    text-align: left;
-    /* Remove right text-align */
+    /* Moves the entire container to the right */
+    margin-left: auto;
+    /* Ensures it stays on the right */
 }
 
 .chat_message_me h4 {

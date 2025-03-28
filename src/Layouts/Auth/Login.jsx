@@ -27,12 +27,12 @@ function Login() {
 
     useEffect(() => {
         if (submit) {
-            axios
-                .post('http://opsurt.test/api/login', formData)
+            axios.post('http://opsurt.test/api/login', formData)
                 .then((response) => {
                     console.log('Response:', response.data);
                     localStorage.setItem('token', JSON.stringify(response.data.token));
-                    setStatus('success'); // Set status to success
+                    localStorage.setItem('username', response.data.name);  // Store username
+                    setStatus('success');
                 })
                 .catch((error) => {
                     console.error('Error:', error.response ? error.response.data : error.message);

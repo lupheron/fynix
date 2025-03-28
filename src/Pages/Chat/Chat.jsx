@@ -13,14 +13,9 @@ function Chat() {
     const [messages, setMessages] = useState([]);
     const { users, getUsers } = useUsers();
 
-    let username = "";
-    if (users.length > 0) {
-        users.forEach((user) => {
-            username = user.name
-        })
-    } else {
-        username = "Guest";
-    }
+    const storedUsername = localStorage.getItem("username");
+    const username = storedUsername ? storedUsername : "Guest";
+
     useEffect(() => {
         getUsers();
     }, []);
