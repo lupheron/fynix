@@ -1,0 +1,89 @@
+{
+    "statistics": "Statistika",
+    "out": "Chiqim",
+    "cash": "Kassa",
+    "out_flow": "Chiqimlar tarixi",
+    "users": "Foydalanuvchilar",
+    "chat": "Chat",
+    "parametrs": "Parametrlar",
+    "country": "Davlatlar",
+    "category": "Kategoriyalar",
+    "material": "Materiallar",
+    "warehouse": "Skladlar",
+    "section": "Bo'limlar",
+    "box": "Qutilar",
+    "product": "Mahsulotlar",
+    "in": "Kirim",
+    "in_flow": "Kirimlar tarixi",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "countries": {
+        "country_name": "Davlat nomi",
+        "country_create_title": "Yangi Davlat Qo'shish",
+        "country_edit_title": "Davlatni Tahrirlash",
+        "country_name_required": "Davlat nomini kiriting!",
+        "tools": "Uskunalar",
+        "id": "ID"
+    },
+    "categories": {
+        "category_name": "Kategoriya nomi",
+        "section_name": "Bo'lim nomi",
+        "category_create_title": "Yangi Kategoriya Qo'shish",
+        "category_edit_title": "Kategoriyani Tahrirlash",
+        "category_name_required": "Kategoriya nomini kiriting!",
+        "tools": "Uskunalar",
+        "id": "ID"
+    },
+    "materials": {
+        "material_name": "Quti nomi",
+        "category_name": "Bo'lim nomi",
+        "material_create_title": "Yangi Quti Qo'shish",
+        "material_edit_title": "Qutini Tahrirlash",
+        "material_name_required": "Quti nomini kiriting!",
+        "category_required": "Bo'lim nomini tanlang!",
+        "tools": "Uskunalar",
+        "id": "ID"
+    },
+    "warehouses": {
+        "warehouse_name": "QSklad nomi",
+        "warehouse_create_title": "Yangi QSklad Qo'shish",
+        "warehouse_edit_title": "Skladini Tahrirlash",
+        "warehouse_name_required": "QSklad nomini kiriting!",
+        "section_count": "Bo'limlar soni",
+        "boxes_count": "Qutilar soni",
+        "tools": "Uskunalar",
+        "id": "ID"
+    },
+    "sections": {
+        "section_name": "Bo'lim nomi",
+        "warehouse_name": "Sklad nomi",
+        "section_create_title": "Yangi Bo'lim Qo'shish",
+        "section_edit_title": "Bo'limni Tahrirlash",
+        "section_name_required": "Bo'lim nomini kiriting!",
+        "warehouse_required": "Skladni tanlang!",
+        "box_count": "Qutilar soni",
+        "tools": "Uskunalar",
+        "id": "ID"
+    },
+    "boxes": {
+        "box_name": "Quti nomi",
+        "section_name": "Bo'lim nomi",
+        "box_create_title": "Yangi Quti Qo'shish",
+        "box_edit_title": "Qutini Tahrirlash",
+        "box_name_required": "Quti nomini kiriting!",
+        "section_required": "Bo'limni tanlang!",
+        "tools": "Uskunalar",
+        "id": "ID"
+    },
+    "products": {
+        "product_name": "Quti nomi",
+        "product_create_title": "Yangi Quti Qo'shish",
+        "product_edit_title": "Qutini Tahrirlash",
+        "product_name_required": "Quti nomini kiriting!",
+        "product_price": "Quti nomini kiriting!",
+        "product_count": "Quti nomini kiriting!",
+        "product_summa": "Quti nomini kiriting!",
+        "tools": "Uskunalar",
+        "id": "ID"
+    }
+}

@@ -11,22 +11,22 @@ export const useSection = create((set, get) => ({
 
     columns: [
         {
-            title: 'ID',
+            title: 'id',
             dataIndex: 'id',
             key: 'id',
         },
         {
-            title: "Bo'lim nomi",
+            title: "section_name",
             dataIndex: 'sec_name',
             key: 'sec_name',
         },
         {
-            title: 'Qutilar soni',
+            title: 'box_count',
             dataIndex: 'box_count',
             key: 'box_count',
         },
         {
-            title: 'Uskunalar',
+            title: 'tools',
             key: 'actions',
             width: 100,
             render: (_, section) => (

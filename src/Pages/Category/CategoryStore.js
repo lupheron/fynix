@@ -15,12 +15,12 @@ export const useCategory = create((set, get) => ({
             key: 'id',
         },
         {
-            title: 'Kategoriya nomi',
+            title: 'category_name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Uskunalar',
+            title: 'tools',
             key: 'actions',
             width: 100,
             render: (_, kt) => (

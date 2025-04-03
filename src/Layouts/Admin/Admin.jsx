@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     BankOutlined,
     BarChartOutlined,
@@ -16,7 +16,7 @@ import {
     TeamOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Breadcrumb, Layout, Menu, theme, Select } from 'antd';
 import { NavLink, Route, Routes, useHref } from 'react-router-dom';
 import Products from '../../Pages/Products/Products';
 import axios from 'axios';
@@ -33,7 +33,11 @@ import Out from '../../Pages/Out/Out';
 import OutFlow from '../../Pages/Out/OutFlow/OutFlow';
 import Stat from '../../Pages/Chart/Stat';
 import Chat from '../../Pages/Chat/Chat';
-const { Header, Content, Footer, Sider } = Layout;
+import "../../i18n";
+import { useTranslation } from "react-i18next";
+
+const { Header, Content, Sider } = Layout;
+
 function getItem(label, key, icon, children) {
     return {
         key,
@@ -42,48 +46,60 @@ function getItem(label, key, icon, children) {
         label,
     };
 }
-const items = [
-    getItem(<NavLink to={"/admin/"}>Statistika</NavLink>, '/admin/', <BarChartOutlined />),
-    getItem('Chiqim', 'sub1', <PieChartOutlined />, [
-        getItem(<NavLink to={"/admin/out"}>Kassa</NavLink>, '/admin/out', <DollarOutlined />),
-        getItem(<NavLink to={'/admin/out-flow'}>Chiqim bo'yicha hisobotlar</NavLink>, '/admin/out-flow', <HddOutlined />),
-    ]),
-    getItem(<NavLink to="/admin/users">Foydalanuvchilar</NavLink>, '/admin/users', <UserOutlined />),
-    getItem(<NavLink to={"/admin/chat"}>Chat</NavLink>, "/admin/chat", <TeamOutlined />),
-    getItem('Parametrlar', 'sub3', <DeploymentUnitOutlined />, [
-        getItem(<NavLink to={'/admin/country'}>Davlatlar</NavLink>, '/admin/country', <BankOutlined />),
-        getItem(<NavLink to={'/admin/category'}>Kategoriyalar</NavLink>, '/admin/category', <DatabaseOutlined />),
-        getItem(<NavLink to={'/admin/material'}>Materiallar</NavLink>, '/admin/material', <PartitionOutlined />),
-        getItem(<NavLink to={'/admin/warehouse'}>Skladlar</NavLink>, '/admin/warehouse', <SaveOutlined />),
-        getItem(<NavLink to={'/admin/section'}>Bo'lmlar</NavLink>, '/admin/section', <ProfileOutlined />),
-        getItem(<NavLink to={'/admin/boxes'}>Qutilar</NavLink>, '/admin/boxes', <BoxPlotOutlined />),
-        getItem(<NavLink to={'/admin/products'}>Mahsulotlar</NavLink>, '/admin/products', <ProductOutlined />),
-    ]),
-    getItem('Kirim', 'sub4', <PieChartOutlined />, [
-        getItem(<NavLink to={"/admin/coming"}>Kirim</NavLink>, '/admin/coming', <ShoppingCartOutlined />),
-        getItem(<NavLink to={'/admin/coming-flow'}>Kirim bo'yicha hisobotlar</NavLink>, '/admin/coming-flow', <HddOutlined />),
-    ]),
-];
+
 const Admin = () => {
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
-    let uri = useHref()
+    let uri = useHref();
+    const { t, i18n } = useTranslation(); // ✅ FIXED: useTranslation() inside the component
 
+    // Function to change language
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+        localStorage.setItem("lang", lang);
+    };
+
+    // Load stored language preference on app load
+    useEffect(() => {
+        const storedLang = localStorage.getItem("lang");
+        if (storedLang) {
+            i18n.changeLanguage(storedLang);
+        }
+    }, []);
+
+    const items = [
+        getItem(<NavLink to={"/admin/"}>{t("statistics")}</NavLink>, '/admin/', <BarChartOutlined />),
+        getItem(t("out"), 'sub1', <PieChartOutlined />, [
+            getItem(<NavLink to={"/admin/out"}>{t("cash")}</NavLink>, '/admin/out', <DollarOutlined />),
+            getItem(<NavLink to={'/admin/out-flow'}>{t("out_flow")}</NavLink>, '/admin/out-flow', <HddOutlined />),
+        ]),
+        getItem(<NavLink to="/admin/users">{t("users")}</NavLink>, '/admin/users', <UserOutlined />),
+        getItem(<NavLink to={"/admin/chat"}>{t("chat")}</NavLink>, "/admin/chat", <TeamOutlined />),
+        getItem(t("parametrs"), 'sub3', <DeploymentUnitOutlined />, [
+            getItem(<NavLink to={'/admin/country'}>{t("country")}</NavLink>, '/admin/country', <BankOutlined />),
+            getItem(<NavLink to={'/admin/category'}>{t("category")}</NavLink>, '/admin/category', <DatabaseOutlined />),
+            getItem(<NavLink to={'/admin/material'}>{t("material")}</NavLink>, '/admin/material', <PartitionOutlined />),
+            getItem(<NavLink to={'/admin/warehouse'}>{t("warehouse")}</NavLink>, '/admin/warehouse', <SaveOutlined />),
+            getItem(<NavLink to={'/admin/section'}>{t("section")}</NavLink>, '/admin/section', <ProfileOutlined />),
+            getItem(<NavLink to={'/admin/boxes'}>{t("box")}</NavLink>, '/admin/boxes', <BoxPlotOutlined />),
+            getItem(<NavLink to={'/admin/products'}>{t("product")}</NavLink>, '/admin/products', <ProductOutlined />),
+        ]),
+        getItem(t("in"), 'sub4', <PieChartOutlined />, [
+            getItem(<NavLink to={"/admin/coming"}>{t("in")}</NavLink>, '/admin/coming', <ShoppingCartOutlined />),
+            getItem(<NavLink to={'/admin/coming-flow'}>{t("in_flow")}</NavLink>, '/admin/coming-flow', <HddOutlined />),
+        ]),
+    ];
 
     axios.defaults.baseURL = "http://opsurt.test/api";
     axios.defaults.headers.common = {
         "Authorization": "Bearer " + localStorage.getItem('token')
-    }
+    };
 
     return (
-        <Layout
-            style={{
-                minHeight: '150vh',
-            }}
-        >
+        <Layout style={{ minHeight: '150vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div className="demo-logo-vertical" />
                 <Menu theme="dark" defaultSelectedKeys={uri} mode="inline" items={items} />
@@ -91,22 +107,27 @@ const Admin = () => {
             <Layout>
                 <Header
                     style={{
-                        padding: 0,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        padding: "0 20px",
                         background: colorBgContainer,
                         height: '8%'
                     }}
                 >
+                    <Select
+                        defaultValue={i18n.language}
+                        style={{ width: 150 }}
+                        onChange={changeLanguage}
+                        options={[
+                            { value: 'uz', label: '🇺🇿 Uzbek' },
+                            { value: 'en', label: '🇬🇧 English' },
+                            { value: 'ru', label: '🇷🇺 Russian' }
+                        ]}
+                    />
                 </Header>
-                <Content
-                    style={{
-                        margin: '0 16px',
-                    }}
-                >
-                    <Breadcrumb
-                        style={{
-                            margin: '16px 0',
-                        }}
-                    >
+                <Content style={{ margin: '0 16px' }}>
+                    <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item>User</Breadcrumb.Item>
                         <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     </Breadcrumb>
@@ -143,4 +164,5 @@ const Admin = () => {
         </Layout>
     );
 };
+
 export default Admin;

@@ -15,22 +15,22 @@ export const useWarehouse = create((set, get) => ({
             key: 'id',
         },
         {
-            title: 'Sklad nomi',
+            title: 'warehouse_name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: "Bo'limlar soni",
+            title: "section_count",
             dataIndex: 'section_count',
             key: 'section_count',
         },
         {
-            title: 'Qutilar soni',
+            title: 'boxes_count',
             dataIndex: 'box_count',
             key: 'box_count',
         },
         {
-            title: 'Uskunalar',
+            title: 'tools',
             key: 'actions',
             width: 100,
             render: (_, wh) => (

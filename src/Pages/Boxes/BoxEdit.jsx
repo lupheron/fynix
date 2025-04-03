@@ -1,8 +1,10 @@
 import { Button, Form, Input, Modal, Row, Col } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 function BoxEdit({ isEditing, handleClose, selectedItem, handleUpdate }) {
+    const { t } = useTranslation(); // Initialize the translation function
     const [form] = useForm();
 
     useEffect(() => {
@@ -10,9 +12,10 @@ function BoxEdit({ isEditing, handleClose, selectedItem, handleUpdate }) {
             form.setFieldsValue(selectedItem);
         }
     }, [selectedItem]);
+
     return (
         <div>
-            <Modal width={800} open={isEditing} onCancel={handleClose} footer={false} title="Qutini Tahrirlash">
+            <Modal width={800} open={isEditing} onCancel={handleClose} footer={false} title={t('boxes.box_edit_title')}>
                 <Form
                     onFinish={(values) => {
                         handleUpdate(values);
@@ -26,14 +29,14 @@ function BoxEdit({ isEditing, handleClose, selectedItem, handleUpdate }) {
                             <Input />
                         </Form.Item>
                         <Col span={8}>
-                            <Form.Item name="box_name" label="Quti nomi" rules={[{ required: true, message: "Quti nomini kiriting!" }]}>
+                            <Form.Item name="box_name" label={t('boxes.box_name')} rules={[{ required: true, message: t('boxes.box_name') + "!" }]}>
                                 <Input type="text" />
                             </Form.Item>
                         </Col>
                     </Row>
                     <Form.Item>
-                        <Button htmlType="submit" type="primary">Saqlash</Button>
-                        <Button style={{ marginLeft: "10px" }} onClick={handleClose}>Bekor qilish</Button>
+                        <Button htmlType="submit" type="primary">{t('save')}</Button>
+                        <Button style={{ marginLeft: "10px" }} onClick={handleClose}>{t('cancel')}</Button>
                     </Form.Item>
                 </Form>
             </Modal>

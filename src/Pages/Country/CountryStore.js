@@ -15,9 +15,19 @@ export const useCountry = create((set, get) => ({
             key: 'id',
         },
         {
-            title: 'Davlat nomi',
+            title: 'Country name (EN)',
             dataIndex: 'name',
             key: 'name',
+        },
+        {
+            title: 'Имена строны (RU)',
+            dataIndex: 'name_ru',
+            key: 'name_ru',
+        },
+        {
+            title: 'Davlat nomi (UZ)',
+            dataIndex: 'name_uz',
+            key: 'name_uz',
         },
         {
             title: 'Uskunalar',

@@ -11,22 +11,22 @@ export const useBoxes = create((set, get) => ({
 
     columns: [
         {
-            title: 'ID',
+            title: 'id', // Keep the static text here
             dataIndex: 'id',
             key: 'id',
         },
         {
-            title: "Bo'lim nomi",
+            title: 'section_name', // Static text for now
             dataIndex: 'sec_name',
             key: 'sec_name',
         },
         {
-            title: "Quti nomi",
+            title: 'box_name', // Static text for now
             dataIndex: 'box_name',
             key: 'box_name',
         },
         {
-            title: 'Uskunalar',
+            title: 'tools', // Static text for now
             key: 'actions',
             width: 100,
             render: (_, box) => (
@@ -44,7 +44,7 @@ export const useBoxes = create((set, get) => ({
                 set({ section: res.data })
                 console.log(res.data)
             })
-            .catch((error) => console.error("Error fetching warehosue", error));
+            .catch((error) => console.error("Error fetching warehouse", error));
     },
 
     getBoxes: () => {
@@ -52,33 +52,28 @@ export const useBoxes = create((set, get) => ({
             .then((res) => {
                 set({ boxes: res.data })
             })
-
-            .catch((error) => console.error("Error fetching section:", error));
+            .catch((error) => console.error("Error fetching boxes", error));
     },
     handleEdit: (sec) => {
-        // console.log("Editing product:", wh); // Debugging: Log the product being edited
         set({ selectedProduct: sec, isEditing: true }); // Open the Edit modal and set the selected product
     },
 
     handleUpdate: (values) => {
         const { selectedProduct } = get();
         if (!selectedProduct) return;
-        // console.log(values, id);
-
-        // console.log("Updating warehouse with values:", values); // Debugging: Log the form values
 
         axios.put(`http://opsurt.test/api/editbox/${values.id}`, values)
             .then((response) => {
-                console.log("Update response:", response.data); // Debugging: Log success
-                set({ isEditing: false, selectedProduct: null }); // Close the modal and reset selected product
-                get().getBoxes(); // Refresh the product list
+                console.log("Update response:", response.data);
+                set({ isEditing: false, selectedProduct: null });
+                get().getBoxes(); // Refresh the boxes list
             })
-            .catch((error) => console.error("Error updating product:", error)); // Log errors
+            .catch((error) => console.error("Error updating box:", error));
     },
     handleDelete: (boxId) => {
         axios.delete(`/delbox/${boxId}`)
             .then(() => get().getBoxes())
-            .catch((error) => console.error("Error deleting product:", error));
+            .catch((error) => console.error("Error deleting box:", error));
     },
 
     handleCreate: (formData) => {
@@ -90,13 +85,12 @@ export const useBoxes = create((set, get) => ({
                 } else if (response.data.status === 201) {
                     alert(response.data.message); // Show warning if section exists
                 } else {
-                    console.error("Error creating section:", response.data.message);
+                    console.error("Error creating box:", response.data.message);
                 }
             })
-            .catch((error) => console.error("Error creating section:", error));
+            .catch((error) => console.error("Error creating box:", error));
     },
 
-
-    handleOpenCreate: () => set({ isCreating: true, isEditing: false, selectedProduct: null }), // Open Create modal, close Edit modal
-    handleClose: () => set({ isCreating: false, isEditing: false, selectedProduct: null }), // Close both modals
-})); 
+    handleOpenCreate: () => set({ isCreating: true, isEditing: false, selectedProduct: null }), // Open Create modal
+    handleClose: () => set({ isCreating: false, isEditing: false, selectedProduct: null }), // Close modals
+}));

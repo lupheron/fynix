@@ -2,16 +2,19 @@ import { Button, Form, Input, Modal, Row, Col, Select } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import React, { useEffect } from 'react';
 import { useBoxes } from './BoxesStore';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 function BoxCreate({ isCreating, handleClose, handleCreate }) {
+    const { t } = useTranslation(); // Initialize the translation function
     const [form] = useForm();
-    const { section, getSection } = useBoxes(); // Fetch warehouses
+    const { section, getSection } = useBoxes(); // Fetch sections
 
     useEffect(() => {
-        getSection(); // Load warehouses when component mounts
+        getSection(); // Load sections when component mounts
     }, []);
+
     return (
-        <Modal width={800} open={isCreating} onCancel={handleClose} footer={false} title="Yangi Quti Qo'shish">
+        <Modal width={800} open={isCreating} onCancel={handleClose} footer={false} title={t('boxes.box_create_title')}>
             <Form
                 onFinish={(values) => {
                     handleCreate(values);
@@ -24,15 +27,15 @@ function BoxCreate({ isCreating, handleClose, handleCreate }) {
                     <Col span={8}>
                         <Form.Item
                             name="sec_id"
-                            label="Bo'lim nomi"
-                            rules={[{ required: true, message: "Bo'lim nomini tanlang!" }]}
+                            label={t('boxes.section_name')}
+                            rules={[{ required: true, message: t('boxes.section_name') + "!" }]}
                         >
                             <Select
                                 showSearch
-                                placeholder="Bo'limni tanlang"
+                                placeholder={t('boxes.section_name')}
                                 optionFilterProp="label"
                                 options={section.map((sec) => ({
-                                    value: sec.id, // Send ID instead of name
+                                    value: sec.id,
                                     label: sec.sec_name,
                                 }))}
                             />
@@ -41,16 +44,16 @@ function BoxCreate({ isCreating, handleClose, handleCreate }) {
                     <Col span={8}>
                         <Form.Item
                             name="box_name"
-                            label="Quti nomi"
-                            rules={[{ required: true, message: "Quti nomini kiriting!" }]}
+                            label={t('boxes.box_name')}
+                            rules={[{ required: true, message: t('boxes.box_name') + "!" }]}
                         >
                             <Input type="text" />
                         </Form.Item>
                     </Col>
                 </Row>
                 <Form.Item>
-                    <Button htmlType="submit" type="primary">Saqlash</Button>
-                    <Button style={{ marginLeft: "10px" }} onClick={handleClose}>Bekor qilish</Button>
+                    <Button htmlType="submit" type="primary">{t('save')}</Button>
+                    <Button style={{ marginLeft: "10px" }} onClick={handleClose}>{t('cancel')}</Button>
                 </Form.Item>
             </Form>
         </Modal>

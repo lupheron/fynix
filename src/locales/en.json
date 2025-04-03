@@ -1,0 +1,87 @@
+{
+    "statistics": "Statistics",
+    "out": "Expense",
+    "cash": "Cash",
+    "out_flow": "Expense History",
+    "users": "Users",
+    "chat": "Chat",
+    "parametrs": "Parameters",
+    "country": "Countries",
+    "category": "Categories",
+    "material": "Materials",
+    "warehouse": "Warehouses",
+    "section": "Sections",
+    "box": "Boxes",
+    "product": "Products",
+    "in": "Income",
+    "in_flow": "Income History",
+    "save": "Save",
+    "cancel": "Cancel",
+    "countries": {
+        "country_name": "Country Name",
+        "country": "Add New Country",
+        "country_create_title": "Create Country",
+        "country_edit_title": "Edit Country",
+        "country_name_required": "Enter the country name!",
+        "tools": "Tools",
+        "id": "ID"
+    },
+    "categories": {
+        "category_name": "Category Name",
+        "section_name": "Section Name",
+        "category_create_title": "Add New Category",
+        "category_edit_title": "Edit Category",
+        "category_name_required": "Enter the category name!",
+        "tools": "Tools",
+        "id": "ID"
+    },
+    "materials": {
+        "material_name": "Material Name",
+        "category_name": "Category Name",
+        "material_create_title": "Add New Material",
+        "material_edit_title": "Edit Material",
+        "material_name_required": "Enter the material name!",
+        "category_required": "Select a category!",
+        "tools": "Tools",
+        "id": "ID"
+    },
+    "warehouses": {
+        "warehouse_name": "Warehouse Name",
+        "warehouse_create_title": "Add New Warehouse",
+        "warehouse_edit_title": "Edit Warehouse",
+        "warehouse_name_required": "Enter the warehouse name!",
+        "tools": "Tools",
+        "id": "ID"
+    },
+    "sections": {
+        "section_name": "Section Name",
+        "warehouse_name": "Warehouse Name",
+        "section_create_title": "Add New Section",
+        "section_edit_title": "Edit Section",
+        "section_name_required": "Enter the section name!",
+        "warehouse_required": "Select a warehouse!",
+        "tools": "Tools",
+        "id": "ID"
+    },
+    "boxes": {
+        "box_name": "Box Name",
+        "section_name": "Section Name",
+        "box_create_title": "Add New Box",
+        "box_edit_title": "Edit Box",
+        "box_name_required": "Enter the box name!",
+        "section_required": "Select a section!",
+        "tools": "Tools",
+        "id": "ID"
+    },
+    "products": {
+        "product_name": "Product Name",
+        "product_create_title": "Add New Product",
+        "product_edit_title": "Edit Product",
+        "product_name_required": "Enter the product name!",
+        "product_price": "Enter the product price!",
+        "product_count": "Enter the product quantity!",
+        "product_summa": "Enter the product sum!",
+        "tools": "Tools",
+        "id": "ID"
+    }
+}

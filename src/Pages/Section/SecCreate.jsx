@@ -2,17 +2,19 @@ import { Button, Form, Input, Modal, Row, Col, Select } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import React, { useEffect } from 'react';
 import { useSection } from './SectionStore';
+import { useTranslation } from 'react-i18next';
 
 function SecCreate({ isCreating, handleClose, handleCreate }) {
     const [form] = useForm();
     const { warehouse, getWarehouse } = useSection(); // Fetch warehouses
+    const { t } = useTranslation(); // Initialize the translation function
 
     useEffect(() => {
         getWarehouse(); // Load warehouses when component mounts
     }, []);
 
     return (
-        <Modal width={800} open={isCreating} onCancel={handleClose} footer={false} title="Yangi Bo'lim Qo'shish">
+        <Modal width={800} open={isCreating} onCancel={handleClose} footer={false} title={t('sections.section_create_title')}>
             <Form
                 onFinish={(values) => {
                     handleCreate(values);
@@ -25,12 +27,12 @@ function SecCreate({ isCreating, handleClose, handleCreate }) {
                     <Col span={8}>
                         <Form.Item
                             name="w_id"
-                            label="Sklad nomi"
-                            rules={[{ required: true, message: "Sklad nomini tanlang!" }]}
+                            label={t('sections.section_name')}
+                            rules={[{ required: true, message: t('sections.section_name') + "!" }]}
                         >
                             <Select
                                 showSearch
-                                placeholder="Skladni tanlang"
+                                placeholder={t('sections.warehouse_name')}
                                 optionFilterProp="label"
                                 options={warehouse.map((wh) => ({
                                     value: wh.id, // Send ID instead of name
@@ -42,16 +44,16 @@ function SecCreate({ isCreating, handleClose, handleCreate }) {
                     <Col span={8}>
                         <Form.Item
                             name="sec_name"
-                            label="Bo'lim nomi"
-                            rules={[{ required: true, message: "Bo'lim nomini kiriting!" }]}
+                            label={t('sections.section_name')}
+                            rules={[{ required: true, message: t('sections.section_name') + "!" }]}
                         >
                             <Input type="text" />
                         </Form.Item>
                     </Col>
                 </Row>
                 <Form.Item>
-                    <Button htmlType="submit" type="primary">Saqlash</Button>
-                    <Button style={{ marginLeft: "10px" }} onClick={handleClose}>Bekor qilish</Button>
+                    <Button htmlType="submit" type="primary">{t('save')}</Button>
+                    <Button style={{ marginLeft: "10px" }} onClick={handleClose}>{t('cancel')}</Button>
                 </Form.Item>
             </Form>
         </Modal>

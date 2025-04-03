@@ -1,0 +1,86 @@
+{
+    "statistics": "Статистика",
+    "out": "Расход",
+    "cash": "Касса",
+    "out_flow": "История расходов",
+    "users": "Пользователи",
+    "chat": "Чат",
+    "parametrs": "Параметры",
+    "country": "Страны",
+    "category": "Категории",
+    "material": "Материалы",
+    "warehouse": "Склады",
+    "section": "Разделы",
+    "box": "Ящики",
+    "product": "Продукты",
+    "in": "Доход",
+    "in_flow": "История доходов",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "countries": {
+        "country_name": "Название страны",
+        "country_create_title": "Добавить новую страну",
+        "country_edit_title": "Редактировать страну",
+        "country": "Введите название страны!",
+        "tools": "Инструменты",
+        "id": "ID"
+    },
+    "categories": {
+        "category_name": "Название категории",
+        "section_name": "Название раздела",
+        "category_create_title": "Добавить новую категорию",
+        "category_edit_title": "Редактировать категорию",
+        "category_name_required": "Введите название категории!",
+        "tools": "Инструменты",
+        "id": "ID"
+    },
+    "materials": {
+        "material_name": "Название материала",
+        "category_name": "Название категории",
+        "material_create_title": "Добавить новый материал",
+        "material_edit_title": "Редактировать материал",
+        "material_name_required": "Введите название материала!",
+        "category_required": "Выберите категорию!",
+        "tools": "Инструменты",
+        "id": "ID"
+    },
+    "warehouses": {
+        "warehouse_name": "Название склада",
+        "warehouse_create_title": "Добавить новый склад",
+        "warehouse_edit_title": "Редактировать склад",
+        "warehouse_name_required": "Введите название склада!",
+        "tools": "Инструменты",
+        "id": "ID"
+    },
+    "sections": {
+        "section_name": "Название раздела",
+        "warehouse_name": "Название склада",
+        "section_create_title": "Добавить новый раздел",
+        "section_edit_title": "Редактировать раздел",
+        "section_name_required": "Введите название раздела!",
+        "warehouse_required": "Выберите склад!",
+        "tools": "Инструменты",
+        "id": "ID"
+    },
+    "boxes": {
+        "box_name": "Название ящика",
+        "section_name": "Название раздела",
+        "box_create_title": "Добавить новый ящик",
+        "box_edit_title": "Редактировать ящик",
+        "box_name_required": "Введите название ящика!",
+        "section_required": "Выберите раздел!",
+        "tools": "Инструменты",
+        "id": "ID"
+    },
+    "products": {
+        "product_name": "Название продукта",
+        "product_create_title": "Добавить новый продукт",
+        "product_edit_title": "Редактировать продукт",
+        "product_name_required": "Введите название продукта!",
+        "product_price": "Введите цену продукта!",
+        "product_count": "Введите количество продукта!",
+        "product_summa": "Введите сумму продукта!",
+        "tools": "Инструменты",
+        "id": "ID"
+    }
+}

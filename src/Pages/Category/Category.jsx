@@ -4,29 +4,40 @@ import Edit from './Edit';
 import Create from './Create';
 import styles from '../../assets/css/index.module.css'
 import { useCategory } from './CategoryStore';
+import { useTranslation } from 'react-i18next';
 
 function Category() {
     const { category, handleOpenCreate, columns, getCategory, isCreating, isEditing, handleClose, selectedProduct, handleUpdate, handleCreate } = useCategory();
+    const { t } = useTranslation(); // Get translation function
 
     useEffect(() => {
         getCategory();
     }, []);
+
+    // Translate columns dynamically here
+    const translatedColumns = columns.map(col => ({
+        ...col,
+        title: t(`categories.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
+
     return (
         <div>
             <div className={styles.create_btn}>
-                <Button onClick={handleOpenCreate} type='primary'>Yangi Kategoriya Qo'shish</Button>
+                <Button onClick={handleOpenCreate} type='primary'>
+                    {t('categories.category_create_title')} {/* Translate the button text */}
+                </Button>
             </div>
 
             <Divider />
             <Table
                 rowKey={'id'}
-                columns={columns}
+                columns={translatedColumns}
                 dataSource={category}
                 bordered
             />
 
             <Edit
-                title="Kategoriyani taxrirlash"
+                title={t('categories.category_edit_title')}
                 isEditing={isEditing}
                 handleClose={handleClose}
                 selectedItem={selectedProduct}
@@ -35,7 +46,7 @@ function Category() {
 
             {/* Reuse the generic Create modal */}
             <Create
-                title="Yangi Kategoriya Qo'shish"
+                title={t('categories.category_create_title')}
                 isCreating={isCreating}
                 handleClose={handleClose}
                 handleCreate={handleCreate}
