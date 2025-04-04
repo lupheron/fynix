@@ -4,39 +4,40 @@ import { useProducts } from "./ProductStore";
 import Edit from "./Edit";
 import { Button, Divider, Table } from "antd";
 import Create from "./Create";
+import { useTranslation } from "react-i18next";
 
 function Products() {
-    let { products, getProducts, users, columns, handleOpenCreate, isEditing, isCreating, handleClose, handleCreate, selectedProduct, handleUpdate } = useProducts();
+    let { products, getProducts, columns, handleOpenCreate, isEditing, isCreating, handleClose, handleCreate, selectedProduct, handleUpdate } = useProducts();
+    const { t } = useTranslation(); // Get translation function
 
     useEffect(() => {
         getProducts();
     }, []);
 
+    const translatedColumns = columns.map(col => ({
+        ...col,
+        title: t(`products.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
+
     return (
         <div className={styles.product_container}>
             <div className={styles.crat_container}>
-                <div className={styles.dropdownContainer}>
-                    <select className={styles.dropdown}>
-                        <option value="">Mijozni tanlang</option>
-                        {users.map((u) => (
-                            <option key={u.id} value={u.name}>{u.name}</option>
-                        ))}
-                    </select>
-                </div>
-
                 <div className={styles.create_btn}>
-                    <Button type="primary" onClick={handleOpenCreate}>Mahsulot Qo'shish</Button>
+                    <Button onClick={handleOpenCreate} type="primary">
+                        {t('products.product_create_title')} {/* Translate the button text */}
+                    </Button>
                 </div>
             </div>
+            <br />
             <Divider />
             <Table
                 rowKey={'id'}
-                columns={columns}
+                columns={translatedColumns}
                 dataSource={products}
                 bordered
             />
             <Edit
-                title="Mahsulotni taxrirlash"
+                title={t('products.product_edit_title')}
                 isEditing={isEditing}
                 handleClose={handleClose}
                 selectedItem={selectedProduct}
@@ -44,7 +45,7 @@ function Products() {
             />
 
             <Create
-                title="Yangi mahsulot Qo'shish"
+                title={t('products.product_edit_title')}
                 isCreating={isCreating}
                 handleClose={handleClose}
                 handleCreate={handleCreate}

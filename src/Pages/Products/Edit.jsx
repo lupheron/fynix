@@ -7,6 +7,7 @@ import { useWarehouse } from '../WareHouse/Wareh';
 import { useMaterial } from '../Material/MaterialStore';
 import { useCategory } from '../Category/CategoryStore';
 import { useCountry } from '../Country/CountryStore';
+import { useTranslation } from 'react-i18next';
 
 function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
     const [form] = useForm();
@@ -19,7 +20,8 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
     let { material, getMaterial } = useMaterial();
     let { warehouse, getWarehouse } = useWarehouse();
     let { section, getSection } = useSection();
-    let { boxes, getBoxes } = useBoxes(); 
+    let { boxes, getBoxes } = useBoxes();
+    const { t } = useTranslation(); // Initialize the translation function
 
     useEffect(() => {
         getCountry();
@@ -39,7 +41,7 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
     };
 
     return (
-        <Modal width={800} open={isEditing} onCancel={handleClose} footer={false} title="Mahsulotni Tahrirlash">
+        <Modal width={800} open={isEditing} onCancel={handleClose} footer={false} title={t('products.product_edit_title')}>
             <Form
                 onValuesChange={handleValuesChange}
                 onFinish={(values) => {
@@ -53,32 +55,31 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
 
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Form.Item name="name" label="Mahsulot nomi" rules={[{ required: true, message: "Mahsulot nomini kiriting!" }]} >
+                        <Form.Item name="name" label={t('products.product_name')} rules={[{ required: true, message: t('products.product_name') + "!" }]} >
                             <Input />
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="price" label="Mahsulot narxi" rules={[{ required: true, message: "Narxni kiriting!" }]} >
+                        <Form.Item name="price" label={t('products.product_price_required')} rules={[{ required: true, message: t('products.product_price') + "!" }]} >
                             <Input type="number" />
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="count" label="Mahsulot soni" rules={[{ required: true, message: "Sonini kiriting!" }]} >
+                        <Form.Item name="count" label={t('products.product_count_required')} rules={[{ required: true, message: t('products.product_count') + "!" }]} >
                             <Input type="number" />
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="summa" label="Mahsulot summasi">
+                        <Form.Item name="summa" label={t('products.product_summa_required')}>
                             <Input type="number" disabled value={summa} />
                         </Form.Item>
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Form.Item name="country" label="Ishlab chiqarilgan joyi" rules={[{ required: true, message: "Ishlab chiqarilgan joyni kiriting!" }]} >
+                        <Form.Item name="country" label={t('products.country_required')} rules={[{ required: true, message: t('countries.country_name_required') + "!" }]} >
                             <Select
                                 showSearch
-                                placeholder="Davlatni tanlang"
                                 filterOption={(input, option) =>
                                     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
                                 }
@@ -92,12 +93,11 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
                     <Col span={8}>
                         <Form.Item
                             name="category"
-                            label="Mahsulot kategoriyasi"
-                            rules={[{ required: true, message: "Mahsulot kategoriyasini kiriting!" }]}
+                            label={t('products.category_required')}
+                            rules={[{ required: true, message: t('categories.category_name_required') + "!" }]}
                         >
                             <Select
                                 showSearch
-                                placeholder="Kategoriyani tanlang"
                                 onChange={(value) => {
                                     setSelectedCategory(value);
                                     form.setFieldsValue({ material: undefined });
@@ -115,12 +115,11 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
                     <Col span={8}>
                         <Form.Item
                             name="material"
-                            label="Mahsulot materiali"
-                            rules={[{ required: true, message: "Mahsulot materialini kiriting!" }]}
+                            label={t('products.material_required')}
+                            rules={[{ required: true, message: t('products.materials_required') + "!" }]}
                         >
                             <Select
                                 showSearch
-                                placeholder={selectedCategory ? "Materialni tanlang" : "Avval kategoriyani tanlang"}
                                 disabled={!selectedCategory}
                                 filterOption={(input, option) =>
                                     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -133,10 +132,11 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="warehouse" label="Mahsulot skladi" rules={[{ required: true, message: "Mahsulot skladini kiriting!" }]} >
+                        <Form.Item name="warehouse"
+                            label={t('products.warehouse_required')}
+                            rules={[{ required: true, message: t('sections.warehouse_required') + "!" }]} >
                             <Select
                                 showSearch
-                                placeholder="Skladni tanlang"
                                 onChange={(value) => {
                                     setSelectedWarehouse(value);
                                     form.setFieldsValue({ section: undefined });
@@ -154,14 +154,15 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
                 </Row>
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Form.Item name="section" label="Mahsulot bo'limi" rules={[{ required: true, message: "Bo'limni tanlang!" }]} >
+                        <Form.Item name="section"
+                            label={t('products.section_required')}
+                            rules={[{ required: true, message: t('boxes.section_required') + "!" }]} >
                             <Select
                                 showSearch
                                 onChange={(value) => {
                                     setSelectedSection(value);
                                     form.setFieldsValue({ boxes: undefined });
                                 }}
-                                placeholder={selectedWarehouse ? "Bo'limni tanlang" : "Avval skladni tanlang"}
                                 disabled={!selectedWarehouse}
                                 filterOption={(input, option) =>
                                     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -174,10 +175,11 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="box" label="Mahsulot qutisi" rules={[{ required: true, message: "Qutini tanlang!" }]} >
+                        <Form.Item name="box"
+                            label={t('products.box_required')}
+                            rules={[{ required: true, message: t('box.box_name_required') + "!" }]} >
                             <Select
                                 showSearch
-                                placeholder={selectedSection ? "Qutini tanlang" : "Avval bo'limni tanlang"}
                                 disabled={!selectedSection}
                                 filterOption={(input, option) =>
                                     (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -191,8 +193,8 @@ function EditProduct({ isEditing, handleClose, selectedItem, handleUpdate }) {
                     </Col>
                 </Row>
                 <Form.Item>
-                    <Button htmlType="submit" type="primary">Saqlash</Button>
-                    <Button style={{ marginLeft: "10px" }} onClick={handleClose}>Bekor qilish</Button>
+                    <Button htmlType="submit" type="primary">{t('save')}</Button>
+                    <Button style={{ marginLeft: "10px" }} onClick={handleClose}>{t('cancel')}</Button>
                 </Form.Item>
             </Form>
         </Modal>

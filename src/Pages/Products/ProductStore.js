@@ -11,57 +11,57 @@ export const useProducts = create((set, get) => ({
 
     columns: [
         {
-            title: 'Maxsulot nomi',
+            title: 'product_name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Narxi',
+            title: 'product_price',
             dataIndex: 'price',
             key: 'price',
         },
         {
-            title: 'Soni',
+            title: 'product_count',
             dataIndex: 'count',
             key: 'count',
         },
         {
-            title: 'Summa',
+            title: 'product_summa',
             dataIndex: 'summa',
             key: 'summa',
         },
         {
-            title: 'Davlat',
+            title: 'country_name',
             dataIndex: 'country',
             key: 'country',
         },
         {
-            title: 'Kategoriya',
+            title: 'category_name',
             dataIndex: 'category',
             key: 'category',
         },
         {
-            title: 'Material',
+            title: 'material_name',
             dataIndex: 'material',
             key: 'material',
         },
         {
-            title: 'Sklad',
+            title: 'warehouse_name',
             dataIndex: 'warehouse',
             key: 'warehouse',
         },
         {
-            title: "Bo'lim",
+            title: "section_name",
             dataIndex: 'section',
             key: 'section',
         },
         {
-            title: "Quti",
+            title: "box_name",
             dataIndex: 'box',
             key: 'box',
         },
         {
-            title: 'Uskunalar',
+            title: 'tools',
             key: 'actions',
             width: 100,
             render: (_, product) => (
