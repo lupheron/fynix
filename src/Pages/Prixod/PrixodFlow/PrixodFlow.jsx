@@ -2,12 +2,22 @@ import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import { useComing } from '../PrixodStore';
 import Edit from './Edit';
+import { useTranslation } from 'react-i18next';
 
 function PrixodFlow() {
-    let { columns, expandColumns, coming, getComing, isEditing, handleClose, selectedProduct, handleUpdate, isDeleting, deleteAll } = useComing()
+    let { columns, expandColumns, coming, getComing, isEditing, handleClose, selectedProduct, handleUpdate } = useComing()
+    const { t } = useTranslation(); // Initialize the translation function
+    const translatedColumns = columns.map(col => ({
+        ...col,
+        title: t(`coming.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
+    const translatedColumn2 = expandColumns.map(col => ({
+        ...col,
+        title: t(`products.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
     const expandedRowRender = (items) => (
         <Table
-            columns={expandColumns}
+            columns={translatedColumn2}
             dataSource={items}
             pagination={false}
             rowKey={'id'}
@@ -20,7 +30,7 @@ function PrixodFlow() {
     return (
         <>
             <Table
-                columns={columns}
+                columns={translatedColumns}
                 expandable={{
                     expandedRowRender: (rec) => expandedRowRender(rec.items),
                     rowExpandable: (rec) => rec.items.length > 0,
@@ -30,7 +40,7 @@ function PrixodFlow() {
             />
 
             <Edit
-                title="Chiqimni taxrirlash"
+                title={t('coming.coming_edit')}
                 isEditing={isEditing}
                 handleClose={handleClose}
                 selectedItem={selectedProduct}

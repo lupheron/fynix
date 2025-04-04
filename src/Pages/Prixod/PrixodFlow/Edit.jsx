@@ -1,9 +1,11 @@
 import { Button, Form, Input, Modal, Row, Col, Select } from "antd";
 import { useForm } from "antd/es/form/Form";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
     const [form] = useForm();
+    const { t } = useTranslation(); // Initialize the translation function
 
     useEffect(() => {
         if (selectedItem) {
@@ -25,7 +27,7 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
     };
 
     return (
-        <Modal width={800} open={isEditing} onCancel={handleClose} footer={false} title="Kirimni Tahrirlash">
+        <Modal width={800} open={isEditing} onCancel={handleClose} footer={false} title={t('coming.coming_edit')}>
             <Form
                 onFinish={(values) => {
                     handleUpdate(values);
@@ -43,38 +45,38 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
                         <Input />
                     </Form.Item>
                     <Col span={8}>
-                        <Form.Item name="count" label="Soni" rules={[{ required: true, message: "Mahsulot sonini kiriting!" }]}>
+                        <Form.Item name="count" label={t('products.product_count')} rules={[{ required: true, message: t('products.product_count_required') }]}>
                             <Input type="number" />
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="price" label="Narxi" rules={[{ required: true, message: "Mahsulot narxini kiriting!" }]}>
+                        <Form.Item name="price" label={t('products.product_price')} rules={[{ required: true, message: t('products.product_price_required') }]}>
                             <Input type="number" disabled />
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                        <Form.Item name="summa" label="Summasi">
+                        <Form.Item name="summa" label={t("products.product_summa")}>
                             <Input type="number" disabled />
                         </Form.Item>
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Form.Item name="status" label="Holati" rules={[{ required: true, message: "Kirim holatini kiriting!" }]}>
+                        <Form.Item name="status" label={t('coming.status')} rules={[{ required: true, message: t('coming.status_required') + " !" }]}>
                             <Select
                                 showSearch
-                                placeholder="Holatni tanlang"
+                                placeholder={t('coming.status_required')}
                                 options={[
-                                    { value: 1, label: "Mavjud" },
-                                    { value: 0, label: "O'chirilgan" }
+                                    { value: 1, label: t("coming.status_1") },
+                                    { value: 0, label: t("coming.status_2") }
                                 ]}
                             />
                         </Form.Item>
                     </Col>
                 </Row>
                 <Form.Item>
-                    <Button htmlType="submit" type="primary">Saqlash</Button>
-                    <Button style={{ marginLeft: "10px" }} onClick={handleClose}>Bekor qilish</Button>
+                    <Button htmlType="submit" type="primary">{t('save')}</Button>
+                    <Button style={{ marginLeft: "10px" }} onClick={handleClose}>{t('cancel')}</Button>
                 </Form.Item>
             </Form>
         </Modal>

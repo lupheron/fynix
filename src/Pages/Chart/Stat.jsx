@@ -7,6 +7,7 @@ import { Card, Col, Divider, Row, Statistic } from "antd";
 import { useUsers } from "../Users/UsersStore";
 import { useProducts } from "../Products/ProductStore";
 import { BoxPlotOutlined, DollarOutlined, UserOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -17,6 +18,7 @@ function Stat() {
     const [sum, setAnnualSumm] = useState([]);
     let { users, getUsers } = useUsers();
     let { products, getProducts } = useProducts();
+    const { t } = useTranslation(); // Get translation function
 
     useEffect(() => {
         getUsers();
@@ -33,7 +35,7 @@ function Stat() {
                     }
                 });
 
-                setOut([{ label: "Oylik chiqim summasi", data: monthData, backgroundColor: "rgba(54, 162, 235, 0.7)", borderColor: "rgba(54, 162, 235, 1)", borderWidth: 2 }]);
+                setOut([{ label: t('chart.monthly_out_summ'), data: monthData, backgroundColor: "rgba(54, 162, 235, 0.7)", borderColor: "rgba(54, 162, 235, 1)", borderWidth: 2 }]);
 
                 // Fetch Annual Summary
                 return axios.get("http://opsurt.test/api/annual-summ");
@@ -56,39 +58,31 @@ function Stat() {
                     }
                 });
 
-                setComing([{ label: "Oylik kirim summasi", data: incomingData, backgroundColor: "rgba(75, 192, 192, 0.7)", borderColor: "rgba(75, 192, 192, 1)", borderWidth: 2 }]);
+                setComing([{ label: t('chart.monthly_in_summ'), data: incomingData, backgroundColor: "rgba(75, 192, 192, 0.7)", borderColor: "rgba(75, 192, 192, 1)", borderWidth: 2 }]);
             })
             .catch(error => console.error("Error fetching incoming products:", error));
 
     }, []);
-
-
-
-    const data = {
-        labels: [
-            "Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun",
-            "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"
-        ],
-        datasets: out,
-    };
 
     const options = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: { display: true },
-            title: { display: true, text: "Oylik chiqim summasi (Joriy yil)" },
+            title: { display: true, text: t('chart.monthly_out_summ_this') },
         },
         scales: {
             y: { beginAtZero: true },
         },
     };
 
+    const data = {
+        labels: t('months', { returnObjects: true }), // will auto switch based on current language
+        datasets: out,
+    };
+
     const data2 = {
-        labels: [
-            "Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun",
-            "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"
-        ],
+        labels: t('months', { returnObjects: true }),
         datasets: coming,
     };
 
@@ -97,7 +91,7 @@ function Stat() {
         maintainAspectRatio: false,
         plugins: {
             legend: { display: true },
-            title: { display: true, text: "Oylik kirim summasi (Joriy yil)" },
+            title: { display: true, text: t('chart.monthly_in_summ_this') },
         },
         scales: {
             y: { beginAtZero: true },
@@ -112,30 +106,30 @@ function Stat() {
                 <Col span={8}>
                     <Card>
                         <Statistic
-                            title="Jami Mahsulotlar"
+                            title={t('chart.overall_products')}
                             value={products.length}
                             prefix={<BoxPlotOutlined />}
-                            suffix={"dona"}
+                            suffix={t('chart.piece')}
                         />
                     </Card>
                 </Col>
                 <Col span={8}>
                     <Card>
                         <Statistic
-                            title="Jami foydalanuvchilar"
+                            title={t('chart.overall_users')}
                             value={users.length}
                             prefix={<UserOutlined />}
-                            suffix={"dona"}
+                            suffix={t('chart.users')}
                         />
                     </Card>
                 </Col>
                 <Col span={8}>
                     <Card>
                         <Statistic
-                            title="Jami yildagi tushum"
+                            title={t('chart.overall_income')}
                             value={sum}
                             prefix={<DollarOutlined />}
-                            suffix={"sum"}
+                            suffix={t('chart.summa')}
                         />
                     </Card>
                 </Col>

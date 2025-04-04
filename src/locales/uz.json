@@ -17,6 +17,7 @@
     "in_flow": "Kirimlar tarixi",
     "save": "Saqlash",
     "cancel": "Bekor qilish",
+    "sell": "Sotish",
     "countries": {
         "country_name": "Davlat nomi",
         "country_create_title": "Yangi Davlat Qo'shish",
@@ -80,6 +81,7 @@
         "product_price": "Narxi",
         "product_count": "Soni",
         "product_summa": "Summasi",
+        "product_status": "Holati",
         "product_create_title": "Yangi Mahsulot Qo'shish",
         "product_edit_title": "Mahsulotni Tahrirlash",
         "product_name_required": "Mahsulot nomini kiriting!",
@@ -99,6 +101,61 @@
         "country_name": "Davlat",
         "material_name": "Material",
         "tools": "Uskunalar",
+        "id": "ID"
+    },
+    "chart": {
+        "monthly_out_summ": "Oylik chiqim hisoboti",
+        "monthly_in_summ": "Oylik kirim hisoboti",
+        "monthly_out_summ_this": "Oylik chiqim summasi (Joriy yil)",
+        "monthly_in_summ_this": "Oylik kirim summasi (Joriy yil)",
+        "overall_products": "Jami mahsulotlar",
+        "overall_users": "Jami foydalanuvchilar",
+        "overall_income": "Jami yildagi tushum",
+        "piece": "dona",
+        "users": "foydalanuvchilar",
+        "summa": "summa"
+    },
+    "months": [
+        "Yanvar",
+        "Fevral",
+        "Mart",
+        "Aprel",
+        "May",
+        "Iyun",
+        "Iyul",
+        "Avgust",
+        "Sentyabr",
+        "Oktyabr",
+        "Noyabr",
+        "Dekabr"
+    ],
+    "chats": {
+        "business_chat": "Fynix chat",
+        "business_chat_history": "Chat tarixi",
+        "business_chat_send": "Yuborish",
+        "business_chat_type": "Xabaringizni yozing..."
+    },
+    "coming": {
+        "enter_product_data": "Iltimos, tovar nomini yoki kodini kiriting",
+        "came_date": "Qabul qilingan sanasi",
+        "supplier": "Yetkazib beruvchi",
+        "coming_edit": "Kirimni taxrirlash",
+        "status": "Holati",
+        "status_required": "Holatini tanlang",
+        "status_1": "Mavjud",
+        "status_2": "O'chirilgan",
+        "coming_status_required": "Kirim holatini kiriting!",
+        "coming_overall": "Jami qiymati"
+    },
+    "outcome": {
+        "out_edit": "Chiqimni tarixi",
+        "sold_year": "Sotilgan yili",
+        "sold_month": "Sotilgan oyi",
+        "sold_day": "Sotilgan kuni",
+        "year": "Yil",
+        "month": "Oy",
+        "day": "Kun",
+        "out_summa": "Jami qiymati",
         "id": "ID"
     }
 }

@@ -17,11 +17,13 @@
     "in_flow": "История доходов",
     "save": "Сохранить",
     "cancel": "Отмена",
+    "sell": "Продать",
     "countries": {
         "country_name": "Название страны",
+        "country": "Добавить новую страну",
         "country_create_title": "Добавить новую страну",
         "country_edit_title": "Редактировать страну",
-        "country": "Введите название страны!",
+        "country_name_required": "Введите название страны!",
         "tools": "Инструменты",
         "id": "ID"
     },
@@ -77,6 +79,7 @@
         "product_price": "Цена",
         "product_count": "Количество",
         "product_summa": "Сумма",
+        "product_status": "Статус",
         "product_create_title": "Добавить новый продукт",
         "product_edit_title": "Редактировать продукт",
         "product_name_required": "Введите название продукта!",
@@ -96,6 +99,62 @@
         "country_name": "Страна",
         "material_name": "Материал",
         "tools": "Инструменты",
+        "id": "ID"
+    },
+    "chart": {
+        "monthly_out_summ": "Ежемесячный отчет о расходах",
+        "monthly_in_summ": "Ежемесячный отчет о доходах",
+        "monthly_out_summ_this": "Сумма ежемесячных расходов (текущий год)",
+        "monthly_in_summ_this": "Сумма ежемесячных доходов (текущий год)",
+        "overall_products": "Всего продуктов",
+        "overall_users": "Всего пользователей",
+        "overall_income": "Общий доход за год",
+        "piece": "штуки",
+        "users": "человека",
+        "summa": "сумма"
+    },
+    "months": [
+        "Январь",
+        "Февраль",
+        "Март",
+        "Апрель",
+        "Май",
+        "Июнь",
+        "Июль",
+        "Август",
+        "Сентябрь",
+        "Октябрь",
+        "Ноябрь",
+        "Декабрь"
+    ],
+    "chats": {
+        "business_chat": "Fynix чат",
+        "business_chat_history": "История чата",
+        "business_chat_send": "Отправить",
+        "business_chat_type": "Напишите сообщение..."
+    },
+    "coming": {
+        "enter_product_data": "Пожалуйста, введите название или код товара",
+        "came_date": "Дата поступления",
+        "supplier": "Поставщик",
+        "coming_edit": "Редактировать приход",
+        "status": "Статус",
+        "status_required": "Выберите статус",
+        "status_1": "В наличии",
+        "status_2": "Удалено",
+        "coming_status_required": "Пожалуйста, укажите статус прихода!",
+        "coming_overall": "Общая стоимость",
+        "id": "ID"
+    },
+    "outcome": {
+        "out_edit": "История расходов",
+        "sold_year": "Год продажи",
+        "sold_month": "Месяц продажи",
+        "sold_day": "День продажи",
+        "year": "Год",
+        "month": "Месяц",
+        "day": "День",
+        "out_summa": "Общая стоимость",
         "id": "ID"
     }
 }

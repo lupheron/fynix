@@ -5,6 +5,7 @@ import css from "../../assets/css/chat.module.css";
 import { useUsers } from "../Users/UsersStore";
 import { io } from "socket.io-client";
 import { useForm } from "antd/es/form/Form";
+import { useTranslation } from "react-i18next";
 
 const socket = io("http://localhost:4000");
 
@@ -15,6 +16,7 @@ function Chat() {
 
     const storedUsername = localStorage.getItem("username");
     const username = storedUsername ? storedUsername : "Guest";
+    const { t } = useTranslation(); // Get translation function
 
     useEffect(() => {
         getUsers();
@@ -51,12 +53,12 @@ function Chat() {
 
     return (
         <div>
-            <h1>Business Chat</h1>
+            <h1> {t('chats.business_chat')}</h1>
             <div className={css.chat_container}>
                 <aside className={css.chat_aside}>
                     <List
                         size="large"
-                        header={<div>Chat History</div>}
+                        header={<div> {t('chats.business_chat_history')}</div>}
                         dataSource={users}
                         renderItem={(item) => (
                             <List.Item style={{ color: "white" }}>
@@ -93,13 +95,13 @@ function Chat() {
                             >
                                 <Form.Item name="message">
                                     <Input
-                                        placeholder="Type your message..."
+                                        placeholder={t('chats.business_chat_type')}
                                         style={{ width: "400px", marginRight: "10px" }}
                                     />
                                 </Form.Item>
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit">
-                                        Send <SendOutlined />
+                                        {t('chats.business_chat_send')} <SendOutlined />
                                     </Button>
                                 </Form.Item>
                             </Form>

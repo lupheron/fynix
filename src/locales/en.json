@@ -17,6 +17,7 @@
     "in_flow": "Income History",
     "save": "Save",
     "cancel": "Cancel",
+    "sell": "Sell",
     "countries": {
         "country_name": "Country Name",
         "country": "Add New Country",
@@ -78,6 +79,7 @@
         "product_price": "Price",
         "product_count": "Quantity",
         "product_summa": "Total",
+        "product_status": "Status",
         "product_create_title": "Add New Product",
         "product_edit_title": "Edit Product",
         "product_name_required": "Enter product name!",
@@ -97,6 +99,62 @@
         "country_name": "Country",
         "material_name": "Material",
         "tools": "Tools",
+        "id": "ID"
+    },
+    "chart": {
+        "monthly_out_summ": "Monthly Outcome Report",
+        "monthly_in_summ": "Monthly Income Report",
+        "monthly_out_summ_this": "Monthly Outcome Amount (Current Year)",
+        "monthly_in_summ_this": "Monthly Income Amount (Current Year)",
+        "overall_products": "Total Products",
+        "overall_users": "Total Users",
+        "overall_income": "Total Income of the Year",
+        "piece": "pieces",
+        "users": "users",
+        "summa": "summ"
+    },
+    "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ],
+    "chats": {
+        "business_chat": "Fynix chat",
+        "business_chat_history": "Chat history",
+        "business_chat_send": "Send",
+        "business_chat_type": "Type your message..."
+    },
+    "coming": {
+        "enter_product_data": "Please enter the product name or code",
+        "came_date": "Received date",
+        "supplier": "Supplier",
+        "coming_edit": "Edit incoming",
+        "status": "Status",
+        "status_required": "Select a status",
+        "status_1": "Available",
+        "status_2": "Deleted",
+        "coming_status_required": "Please enter the incoming status!",
+        "coming_overall": "Total value",
+        "id": "ID"
+    },
+    "outcome": {
+        "out_edit": "Edit Expense History",
+        "sold_year": "Year Sold",
+        "sold_month": "Month Sold",
+        "sold_day": "Day Sold",
+        "year": "Year",
+        "month": "Month",
+        "day": "Day",
+        "out_summa": "Total Value",
         "id": "ID"
     }
 }

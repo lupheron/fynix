@@ -2,10 +2,16 @@ import { Button, Card, Col, Divider, Form, Input, Row, Select, Table } from 'ant
 import React, { useEffect } from 'react';
 import { useComing } from './PrixodStore';
 import { useProducts } from '../Products/ProductStore';
+import { useTranslation } from 'react-i18next';
 
 function Prixod() {
     let { searchItem, sitems, scolumns, selected, setSelected, create } = useComing()
     let { getProducts, products } = useProducts()
+    const { t } = useTranslation(); // Initialize the translation function
+    const translatedColumns = scolumns.map(col => ({
+        ...col,
+        title: t(`products.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
     useEffect(() => {
         getProducts()
     }, [])
@@ -20,7 +26,7 @@ function Prixod() {
                                 <Select
                                     showSearch
                                     style={{ width: "100%" }}
-                                    placeholder="Iltimos, tovar nomini yoki kodini kiriting"
+                                    placeholder={t("coming.enter_product_data")}
                                     onSearch={(value) => searchItem(value)}
                                     onSelect={(value) => {
                                         const selectedProduct = sitems.find((item) => item.id === value);
@@ -42,7 +48,7 @@ function Prixod() {
                     </Form>
                     <Divider />
                     <Table
-                        columns={scolumns}
+                        columns={translatedColumns}
                         dataSource={selected}
                         rowKey={'id'}
                     />
@@ -55,19 +61,19 @@ function Prixod() {
                     }}>
                         <Row gutter={16}>
                             <Col span={12}>
-                                <Form.Item name={'date'} label='Qabul qilingan sanasi'>
+                                <Form.Item name={'date'} label={t("coming.came_date")}>
                                     <Input type='date' />
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
-                                <Form.Item name={'supplier'} label='Olib keluvchi'>
+                                <Form.Item name={'supplier'} label={t("coming.supplier")}>
                                     <Input />
                                 </Form.Item>
                             </Col>
                         </Row>
 
                         <Form.Item>
-                            <Button type='primary' htmlType='submit'>Saqlash</Button>
+                            <Button type='primary' htmlType='submit'>{t("save")}</Button>
                         </Form.Item>
                     </Form>
                 </Col>

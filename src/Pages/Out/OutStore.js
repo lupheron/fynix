@@ -1,3 +1,4 @@
+import { CheckCircleTwoTone, CloseCircleTwoTone } from "@ant-design/icons";
 import { Button, message, Space } from "antd";
 import axios from "axios";
 import { create } from "zustand";
@@ -71,22 +72,22 @@ export const useOut = create((set, get) => ({
 
     scolumns: [
         {
-            title: 'Maxsulot nomi',
+            title: 'product_name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Soni',
+            title: 'product_count',
             dataIndex: 'count',
             key: 'count',
         },
         {
-            title: 'Narxi',
+            title: 'product_price',
             dataIndex: 'price',
             key: 'price',
         },
         {
-            title: 'Summa',
+            title: 'product_summa',
             dataIndex: 'subTotal',
             key: 'subTotal',
             render: (_, rec) => rec.count * rec.price
@@ -98,45 +99,45 @@ export const useOut = create((set, get) => ({
 
     expandColumns: [
         {
-            title: 'Maxsulot',
+            title: 'product_name',
             dataIndex: 'product',
             key: 'product',
         },
         {
-            title: 'Soni',
+            title: 'product_count',
             dataIndex: 'count',
             key: 'count',
         },
         {
-            title: 'Narx',
+            title: 'product_price',
             dataIndex: 'price',
             key: 'price',
         },
         {
-            title: 'Jami',
+            title: 'product_summa',
             dataIndex: 'summa',
             key: 'summa',
         },
         {
-            title: 'Holati',
+            title: 'product_status',
             dataIndex: 'status',
             key: 'status',
             render: (status) => {
-                if (status === 1) {
-                    return "Mavjud"
-                } else {
-                    return "O'chrilgan"
-                }
+                return status === 1 ? (
+                    <CheckCircleTwoTone twoToneColor="#52c41a" title="Exists" />
+                ) : (
+                    <CloseCircleTwoTone twoToneColor="#f5222d" title="Doesn't exist" />
+                );
             }
         },
         {
-            title: 'Uskunalar',
+            title: 'tools',
             key: 'actions',
-            render: (_, out) => {
+            render: (_, coming) => {
                 return (
                     <Space>
-                        <Button onClick={() => get().handleEdit(out)}>✏️</Button>
-                        <Button danger onClick={() => get().handleDelete(out.id)}>🗑️</Button>
+                        <Button onClick={() => get().handleEdit(coming)}>✏️</Button>
+                        <Button danger onClick={() => get().handleDelete(coming.id)}>🗑️</Button>
                     </Space>
                 )
             }
@@ -145,27 +146,27 @@ export const useOut = create((set, get) => ({
 
     columns: [
         {
-            title: 'TR',
+            title: 'ID',
             dataIndex: 'id',
             key: 'id',
         },
         {
-            title: "Prixod bo'lgan kun",
+            title: "sold_day",
             dataIndex: 'day',
             key: 'day',
         },
         {
-            title: "Prixod bo'lgan oy",
+            title: "sold_month",
             dataIndex: 'month',
             key: 'month',
         },
         {
-            title: "Prixod bo'lgan yil",
+            title: "sold_year",
             dataIndex: 'year',
             key: 'year',
         },
         {
-            title: 'Jami qiymati',
+            title: 'out_summa',
             dataIndex: 'summa',
             key: 'summa',
         }

@@ -2,10 +2,16 @@ import { Button, Card, Col, Divider, Form, Input, Row, Select, Table } from 'ant
 import React, { useEffect, useState } from 'react';
 import { useProducts } from '../Products/ProductStore';
 import { useOut } from './OutStore';
+import { useTranslation } from 'react-i18next';
 
 function Out() {
     let { searchItem, sitems, scolumns, selected, setSelected, create } = useOut()
     let { getProducts, products } = useProducts()
+    const { t } = useTranslation(); // Initialize the translation function
+    const translatedColumns = scolumns.map(col => ({
+        ...col,
+        title: t(`products.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
     useEffect(() => {
         getProducts()
     }, [])
@@ -25,7 +31,7 @@ function Out() {
                                 <Select
                                     showSearch
                                     style={{ width: "100%" }}
-                                    placeholder="Iltimos, tovar nomini yoki kodini kiriting"
+                                    placeholder={t("coming.enter_product_data")}
                                     onSearch={(value) => searchItem(value)}
                                     onSelect={(value) => {
                                         const selectedProduct = sitems.find((item) => item.id === value);
@@ -47,7 +53,7 @@ function Out() {
                     </Form>
                     <Divider />
                     <Table
-                        columns={scolumns}
+                        columns={translatedColumns}
                         dataSource={selected}
                         rowKey={'id'}
                     />
@@ -60,10 +66,10 @@ function Out() {
                     }}>
                         <Row gutter={16}>
                             <Col span={12}>
-                                <Form.Item name='day' label='Sotilgan kuni'>
+                                <Form.Item name='day' label={t("outcome.sold_day")}>
                                     <Input
                                         type="number"
-                                        placeholder="Kun"
+                                        placeholder={t("outcome.day")}
                                         min="1"
                                         max="31"
                                         onChange={(e) => setDay(e.target.value)}
@@ -72,10 +78,10 @@ function Out() {
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
-                                <Form.Item name='month' label='Sotilgan Oyi'>
+                                <Form.Item name='month' label={t("outcome.sold_month")}>
                                     <Input
                                         type="number"
-                                        placeholder="Oy"
+                                        placeholder={t("outcome.month")}
                                         min="1"
                                         max="12"
                                         onChange={(e) => setMonth(e.target.value)}
@@ -84,10 +90,10 @@ function Out() {
                                 </Form.Item>
                             </Col>
                             <Col span={12}>
-                                <Form.Item name='year' label='Sotilgan Yili'>
+                                <Form.Item name='year' label={t("outcome.sold_year")}>
                                     <Input
                                         type="number"
-                                        placeholder="Yil"
+                                        placeholder={t("outcome.year")}
                                         min="1900"
                                         max="2100"
                                         onChange={(e) => setYear(e.target.value)}
@@ -98,7 +104,7 @@ function Out() {
                         </Row>
 
                         <Form.Item>
-                            <Button type='primary' htmlType='submit'>Sotish</Button>
+                            <Button type='primary' htmlType='submit'>{t("sell")}</Button>
                         </Form.Item>
                     </Form>
                 </Col>
