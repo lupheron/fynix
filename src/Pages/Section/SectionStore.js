@@ -21,7 +21,7 @@ export const useSection = create((set, get) => ({
             key: 'sec_name',
         },
         {
-            title: 'box_count',
+            title: 'boxes_count',
             dataIndex: 'box_count',
             key: 'box_count',
         },

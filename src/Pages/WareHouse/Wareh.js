@@ -20,7 +20,7 @@ export const useWarehouse = create((set, get) => ({
             key: 'name',
         },
         {
-            title: "section_count",
+            title: "sections_count",
             dataIndex: 'section_count',
             key: 'section_count',
         },

@@ -10,27 +10,27 @@ export const useCountry = create((set, get) => ({
 
     columns: [
         {
-            title: 'ID',
+            title: 'id',
             dataIndex: 'id',
             key: 'id',
         },
         {
-            title: 'Country name (EN)',
+            title: 'country_name_en',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Имена строны (RU)',
+            title: 'country_name_ru',
             dataIndex: 'name_ru',
             key: 'name_ru',
         },
         {
-            title: 'Davlat nomi (UZ)',
+            title: 'country_name',
             dataIndex: 'name_uz',
             key: 'name_uz',
         },
         {
-            title: 'Uskunalar',
+            title: 'tools',
             key: 'actions',
             width: 100,
             render: (_, wh) => (

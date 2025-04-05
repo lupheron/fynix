@@ -27,8 +27,8 @@ function SecCreate({ isCreating, handleClose, handleCreate }) {
                     <Col span={8}>
                         <Form.Item
                             name="w_id"
-                            label={t('sections.section_name')}
-                            rules={[{ required: true, message: t('sections.section_name') + "!" }]}
+                            label={t('sections.warehouse_name')}
+                            rules={[{ required: true, message: t('sections.warehouse_name') + "!" }]}
                         >
                             <Select
                                 showSearch

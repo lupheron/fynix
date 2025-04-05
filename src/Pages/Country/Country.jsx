@@ -9,10 +9,15 @@ import { useTranslation } from 'react-i18next';
 function Country() {
     const { country, handleOpenCreate, columns, getCountry, isCreating, isEditing, handleClose, selectedProduct, handleUpdate, handleCreate } = useCountry();
     const { t } = useTranslation(); // Get translation function
+
     useEffect(() => {
         getCountry();
     }, []);
 
+    const translatedColumns = columns.map(col => ({
+        ...col,
+        title: t(`countries.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
 
     return (
         <div>
@@ -25,7 +30,7 @@ function Country() {
             <Divider />
             <Table
                 rowKey={'id'}
-                columns={columns}
+                columns={translatedColumns}
                 dataSource={country}
                 bordered
             />

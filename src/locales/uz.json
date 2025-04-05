@@ -19,7 +19,9 @@
     "cancel": "Bekor qilish",
     "sell": "Sotish",
     "countries": {
-        "country_name": "Davlat nomi",
+        "country_name": "Davlat nomi (UZ)",
+        "country_name_en": "Country Name (EN)",
+        "country_name_ru": "Название страны (RU)",
         "country_create_title": "Yangi Davlat Qo'shish",
         "country_edit_title": "Davlatni Tahrirlash",
         "country_name_required": "Davlat nomini kiriting!",
@@ -27,7 +29,7 @@
         "id": "ID"
     },
     "categories": {
-        "category_name": "Kategoriya nomi",
+        "category_name": "Kategoriya",
         "section_name": "Bo'lim nomi",
         "category_create_title": "Yangi Kategoriya Qo'shish",
         "category_edit_title": "Kategoriyani Tahrirlash",
@@ -36,21 +38,21 @@
         "id": "ID"
     },
     "materials": {
-        "material_name": "Quti nomi",
-        "category_name": "Bo'lim nomi",
-        "material_create_title": "Yangi Quti Qo'shish",
-        "material_edit_title": "Qutini Tahrirlash",
-        "material_name_required": "Quti nomini kiriting!",
-        "category_required": "Bo'lim nomini tanlang!",
+        "material_name": "Material nomi",
+        "category_name": "Kategoriya nomi",
+        "material_create_title": "Yangi Material Qo'shish",
+        "material_edit_title": "Materialni Tahrirlash",
+        "material_name_required": "Material nomini kiriting!",
+        "category_required": "Kategoriya nomini tanlang!",
         "tools": "Uskunalar",
         "id": "ID"
     },
     "warehouses": {
-        "warehouse_name": "Sklad nomi",
-        "warehouse_create_title": "Yangi Sklad Qo'shish",
-        "warehouse_edit_title": "Skladini Tahrirlash",
-        "warehouse_name_required": "Sklad nomini kiriting!",
-        "section_count": "Bo'limlar soni",
+        "warehouse_name": "Ombor nomi",
+        "warehouse_create_title": "Yangi Ombor Qo'shish",
+        "warehouse_edit_title": "Omborni Tahrirlash",
+        "warehouse_name_required": "Ombor nomini kiriting!",
+        "sections_count": "Bo'limlar soni",
         "boxes_count": "Qutilar soni",
         "tools": "Uskunalar",
         "id": "ID"
@@ -62,7 +64,7 @@
         "section_edit_title": "Bo'limni Tahrirlash",
         "section_name_required": "Bo'lim nomini kiriting!",
         "warehouse_required": "Skladni tanlang!",
-        "box_count": "Qutilar soni",
+        "boxes_count": "Qutilar soni",
         "tools": "Uskunalar",
         "id": "ID"
     },
@@ -104,6 +106,7 @@
         "id": "ID"
     },
     "chart": {
+        "chart_title": "Boshqaruv Paneli",
         "monthly_out_summ": "Oylik chiqim hisoboti",
         "monthly_in_summ": "Oylik kirim hisoboti",
         "monthly_out_summ_this": "Oylik chiqim summasi (Joriy yil)",
@@ -157,5 +160,20 @@
         "day": "Kun",
         "out_summa": "Jami qiymati",
         "id": "ID"
+    },
+    "user": {
+        "user_create_title": "Yangi Foydalanuvchi Qo'shish",
+        "user_edit_title": "Foydalanuvchini Tahrirlash",
+        "name": "Ism",
+        "email": "Email",
+        "role": "Roli",
+        "phone": "Telefon raqam",
+        "password": "Parol",
+        "name_required": "Ismni kiriting",
+        "email_required": "Emailni kiriting",
+        "role_required": "Rolni tanlang",
+        "phone_required": "Telefon raqamni kiriting",
+        "password_required": "Parolni kiriting",
+        "tools": "Uskunalar"
     }
 }

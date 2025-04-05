@@ -19,7 +19,9 @@
     "cancel": "Отмена",
     "sell": "Продать",
     "countries": {
-        "country_name": "Название страны",
+        "country_name": "Davlat nomi (UZ)",
+        "country_name_en": "Country Name (EN)",
+        "country_name_ru": "Название страны (RU)",
         "country": "Добавить новую страну",
         "country_create_title": "Добавить новую страну",
         "country_edit_title": "Редактировать страну",
@@ -42,7 +44,7 @@
         "material_create_title": "Добавить новый материал",
         "material_edit_title": "Редактировать материал",
         "material_name_required": "Введите название материала!",
-        "category_required": "Выберите категорию!",
+        "category_required": "Выберите название категории!",
         "tools": "Инструменты",
         "id": "ID"
     },
@@ -51,6 +53,8 @@
         "warehouse_create_title": "Добавить новый склад",
         "warehouse_edit_title": "Редактировать склад",
         "warehouse_name_required": "Введите название склада!",
+        "sections_count": "Количество секций",
+        "boxes_count": "Количество коробок",
         "tools": "Инструменты",
         "id": "ID"
     },
@@ -61,6 +65,7 @@
         "section_edit_title": "Редактировать раздел",
         "section_name_required": "Введите название раздела!",
         "warehouse_required": "Выберите склад!",
+        "boxes_count": "Количество коробок",
         "tools": "Инструменты",
         "id": "ID"
     },
@@ -102,6 +107,7 @@
         "id": "ID"
     },
     "chart": {
+        "chart_title": "Панель управления",
         "monthly_out_summ": "Ежемесячный отчет о расходах",
         "monthly_in_summ": "Ежемесячный отчет о доходах",
         "monthly_out_summ_this": "Сумма ежемесячных расходов (текущий год)",
@@ -144,7 +150,8 @@
         "status_2": "Удалено",
         "coming_status_required": "Пожалуйста, укажите статус прихода!",
         "coming_overall": "Общая стоимость",
-        "id": "ID"
+        "id": "ID",
+        "tools": "Инструменты"
     },
     "outcome": {
         "out_edit": "История расходов",
@@ -155,6 +162,22 @@
         "month": "Месяц",
         "day": "День",
         "out_summa": "Общая стоимость",
-        "id": "ID"
+        "id": "ID",
+        "tools": "Инструменты"
+    },
+    "user": {
+        "user_create_title": "Добавить нового пользователя",
+        "user_edit_title": "Редактировать пользователя",
+        "name": "Имя",
+        "email": "Электронная почта",
+        "role": "Роль",
+        "phone": "Телефон",
+        "password": "Пароль",
+        "name_required": "Введите имя",
+        "email_required": "Введите электронную почту",
+        "role_required": "Выберите роль",
+        "phone_required": "Введите номер телефона",
+        "password_required": "Введите пароль",
+        "tools": "Инструменты"
     }
 }

@@ -4,32 +4,39 @@ import { useUsers } from './UsersStore';
 import EditUser from './EditUser';
 import CreateUser from './CreateUser';
 import styles from '../../assets/css/index.module.css'
+import { useTranslation } from 'react-i18next';
 
 function Users() {
     let { users, columns, getUsers, handleOpenCreate, isCreating, isEditing, selectedUser, handleClose, handleUpdate, handleCreate } = useUsers();
+    const { t } = useTranslation(); // Get translation function
 
     useEffect(() => {
         getUsers();
     }, []);
 
+    const translatedColumns = columns.map(col => ({
+        ...col,
+        title: t(`user.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
+
+
     return (
         <div>
             <div className={styles.create_btn}>
-                <Button onClick={handleOpenCreate} type='primary'>Yangi Foydalanuvchi Qo'shish</Button>
+                <Button onClick={handleOpenCreate} type='primary'>{t("user.user_create_title")}</Button>
             </div>
-
+            <br />
             <Divider />
-
             <Table
                 rowKey={'id'}
-                columns={columns}
+                columns={translatedColumns}
                 dataSource={users}
                 bordered
             />
 
             {/* Reuse the generic Edit modal */}
             <EditUser
-                title="Foydalanuvchini taxrirlash"
+                title={t("user.user_edit_title")}
                 isEditing={isEditing}
                 handleClose={handleClose}
                 selectedItem={selectedUser}
@@ -38,7 +45,7 @@ function Users() {
 
             {/* Reuse the generic Create modal */}
             <CreateUser
-                title="Yangi Foydalanuvchi Qo'shish"
+                title={t("user.user_create_title")}
                 isCreating={isCreating}
                 handleClose={handleClose}
                 handleCreate={handleCreate}

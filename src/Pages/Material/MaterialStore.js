@@ -10,22 +10,22 @@ export const useMaterial = create((set, get) => ({
 
     columns: [
         {
-            title: 'ID',
+            title: 'id',
             dataIndex: 'id',
             key: 'id',
         },
         {
-            title: 'Kategoriya nomi',
+            title: 'category_name',
             dataIndex: 'category',
             key: 'category',
         },
         {
-            title: 'Material nomi',
+            title: 'material_name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Uskunalar',
+            title: 'tools',
             key: 'actions',
             width: 100,
             render: (_, mt) => (

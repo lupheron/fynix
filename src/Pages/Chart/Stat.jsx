@@ -100,7 +100,7 @@ function Stat() {
 
     return (
         <div>
-            <h1>Boshqaruv Paneli</h1>
+            <h1>{t("chart.chart_title")}</h1>
             <Divider />
             <Row gutter={16}>
                 <Col span={8}>

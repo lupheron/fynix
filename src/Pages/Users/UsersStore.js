@@ -10,27 +10,27 @@ export const useUsers = create((set, get) => ({
 
     columns: [
         {
-            title: 'Foydalanuvchi ismi',
+            title: 'name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Foydalanuvchi pochtasi',
+            title: 'email',
             dataIndex: 'email',
             key: 'email',
         },
         {
-            title: 'Foydalanuvchi roli',
+            title: 'role',
             dataIndex: 'role',
             key: 'role',
         },
         {
-            title: 'Foydalanuvchi telefon raqami',
+            title: 'phone',
             dataIndex: 'phone',
             key: 'phone',
         },
         {
-            title: 'Uskunalar',
+            title: 'tools',
             key: 'actions',
             width: 100,
             render: (_, user) => (

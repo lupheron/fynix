@@ -1,9 +1,17 @@
-import { Button, Col, Form, Input, Modal, Row } from 'antd';
+import { Button, Col, Form, Input, Modal, Row, Select } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import React, { useEffect } from 'react';
+import { useCategory } from '../Category/CategoryStore';
+import { useTranslation } from 'react-i18next';
 
 function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
     const [form] = useForm();
+    let { category, getCategory } = useCategory();
+    const { t } = useTranslation(); // Initialize the translation function
+
+    useEffect(() => {
+        getCategory();
+    }, []);
 
     useEffect(() => {
         if (selectedItem) {
@@ -12,7 +20,7 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
     }, [selectedItem]);
     return (
         <div>
-            <Modal width={800} open={isEditing} onCancel={handleClose} footer={false} title="Materialni Tahrirlash">
+            <Modal width={800} open={isEditing} onCancel={handleClose} footer={false} title={t('materials.material_edit_title')}>
                 <Form
                     onFinish={(values) => {
                         handleUpdate(values);
@@ -26,8 +34,20 @@ function Edit({ isEditing, handleClose, selectedItem, handleUpdate }) {
                             <Input />
                         </Form.Item>
                         <Col span={8}>
-                            <Form.Item name="name" label="Material nomi" rules={[{ required: true, message: "Material nomini kiriting!" }]}>
+                            <Form.Item name="name" label={t('materials.material_name')} rules={[{ required: true, message: t('materials.material_name_required') + "!" }]}>
                                 <Input type="text" />
+                            </Form.Item>
+                            <Form.Item name="cat_id" label={t('materials.category_name')} rules={[{ required: true, message: t('materials.category_required') + "!" }]}>
+                                <Select
+                                    showSearch
+                                    filterOption={(input, option) =>
+                                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                                    }
+                                    options={category.map((item) => ({
+                                        value: item.id,  // Assuming each category has a unique `id`
+                                        label: item.name // Assuming `name` represents the category name
+                                    }))}
+                                />
                             </Form.Item>
                         </Col>
                     </Row>

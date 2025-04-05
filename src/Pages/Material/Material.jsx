@@ -4,29 +4,36 @@ import Edit from './Edit';
 import Create from './Create';
 import styles from '../../assets/css/index.module.css'
 import { useMaterial } from './MaterialStore';
+import { useTranslation } from 'react-i18next';
 
 function Material() {
     const { material, handleOpenCreate, columns, getMaterial, isCreating, isEditing, handleClose, selectedProduct, handleUpdate, handleCreate } = useMaterial();
+    const { t } = useTranslation(); // Get translation function
 
     useEffect(() => {
         getMaterial();
     }, []);
+
+    const translatedColumns = columns.map(col => ({
+        ...col,
+        title: t(`materials.${col.title.toLowerCase().replace(/\s+/g, '_')}`) // Dynamically translate title
+    }));
     return (
         <div>
             <div className={styles.create_btn}>
-                <Button onClick={handleOpenCreate} type='primary'>Yangi Material Qo'shish</Button>
+                <Button onClick={handleOpenCreate} type='primary'>{t("materials.material_create_title")}</Button>
             </div>
-
+            <br />
             <Divider />
             <Table
                 rowKey={'id'}
-                columns={columns}
+                columns={translatedColumns}
                 dataSource={material}
                 bordered
             />
 
             <Edit
-                title="Materialni taxrirlash"
+                title={t("materials.material_edit_title")}
                 isEditing={isEditing}
                 handleClose={handleClose}
                 selectedItem={selectedProduct}
@@ -35,7 +42,7 @@ function Material() {
 
             {/* Reuse the generic Create modal */}
             <Create
-                title="Yangi Material Qo'shish"
+                title={t("materials.material_create_title")}
                 isCreating={isCreating}
                 handleClose={handleClose}
                 handleCreate={handleCreate}
